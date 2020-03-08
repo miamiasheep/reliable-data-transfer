@@ -8,6 +8,14 @@ int A_output(struct msg message)
 	printf("A_output\n");
 	(void)message;
 	printf("%s", message.data);
+	struct pkt packet;
+	int index = 0;
+	while(message.data[index] != 0 && index < 20)
+	{
+		packet.payload[index] = message.data[index];
+		index += 1;
+	}
+	tolayer3(A, packet);
 	return 1;
 }
 
@@ -22,15 +30,15 @@ int A_input(struct pkt packet)
 /* called when A's timer goes off */
 int A_timerinterrupt() {
 	printf("A_timerinterrupt\n");
-	return 0;}
+	return 0;
+}
 
 /* the following routine will be called once (only) before any other */
 /* entity A routines are called. You can use it to do any initialization */
 int A_init() {
 	printf("A init!\n");
 	return 0;
-	
-	}
+}
 
 /* Note that with simplex transfer from a-to-B, there is no B_output() */
 
@@ -39,6 +47,7 @@ int B_input(struct pkt packet)
 {
 	printf("B_input\n");
 	(void)packet;
+	printf("%s\n", packet.payload);
 	return 0;
 }
 
@@ -48,7 +57,7 @@ int B_timerinterrupt() {
 	return 0;
 	}
 
-/* the following rouytine will be called once (only) before any other */
+/* the following routine will be called once (only) before any other */
 /* entity B routines are called. You can use it to do any initialization */
 int B_init() {
 	printf("B_init\n");
@@ -79,9 +88,11 @@ int main()
   B_init();
 
   for (;; ) {
+	printf("loop ...\n");
     eventptr = evlist; /* get next event to simulate */
     if (NULL == eventptr) {
-      goto terminate;
+	  printf("terminate");
+	  goto terminate;
     }
     evlist = evlist->next; /* remove this event from event list */
     if (evlist != NULL) {
@@ -101,6 +112,7 @@ int main()
     }
     time = eventptr->evtime; /* update time to next event time */
     if (nsim == nsimmax) {
+	  printf("All Done with Simulation\n");
       break; /* all done with simulation */
     }
     if (eventptr->evtype == FROM_LAYER5) {
