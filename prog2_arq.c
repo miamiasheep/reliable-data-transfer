@@ -7,7 +7,8 @@ int A_output(struct msg message)
 {
 	printf("A_output\n");
 	(void)message;
-	return 0;
+	printf("%s", message.data);
+	return 1;
 }
 
 /* called from layer 3, when a packet arrives for layer 4 */
