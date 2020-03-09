@@ -1,10 +1,20 @@
 #include "prog2.h"
+#include "helper.h"
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
+int CUR_SEQ_NUM = 0;
+int CAN_SEND = 1;
+struct pkt RESERVED_PACKET;
 
 /* called from layer 5, passed the data to be sent to other side */
 int A_output(struct msg message)
 {
+	/* There is some message currently transit
+	   We cannot send packet now.*/
+	if(CAN_SEND == 0)
+	{
+		return 0;
+	}
 	printf("A_output\n");
 	(void)message;
 	printf("%s", message.data);
@@ -15,15 +25,32 @@ int A_output(struct msg message)
 		packet.payload[index] = message.data[index];
 		index += 1;
 	}
+	packet.checksum = calcuateCheckSum(message.data);
+	printf("\ncheckSum: %d\n", packet.checksum);
+	packet.seqnum = CUR_SEQ_NUM;
+	// Send to B using layer 3
 	tolayer3(A, packet);
+	RESERVED_PACKET = packet;
+	CAN_SEND = 0;
 	return 1;
 }
 
 /* called from layer 3, when a packet arrives for layer 4 */
 int A_input(struct pkt packet)
 {
-	printf("B_input\n");
+	printf("A_input\n");
 	(void)packet;
+	// See the ACK and determine whether to resent
+	// acknum equals to CUR_SEQ_NUM means an ACK
+	if(packet.acknum == CUR_SEQ_NUM)
+	{
+		// Do not have to resent, just add CUR_SEQ_NUM
+		CUR_SEQ_NUM = ((CUR_SEQ_NUM + 1) % 2);
+	}else
+	{
+		// This is a NACK, we have to resend the packet
+		tolayer3(A, RESERVED_PACKET);
+	}
 	return 0;
 }
 
@@ -47,7 +74,25 @@ int B_input(struct pkt packet)
 {
 	printf("B_input\n");
 	(void)packet;
+	struct pkt packetToA;
 	printf("%s\n", packet.payload);
+	// Check whether the message is corrupted
+	int checkSum = calcuateCheckSum(packet.payload);
+	// Send ACK or NACK
+	if(checkSum == packet.checksum){
+		// Send ACK
+		packetToA.acknum = CUR_SEQ_NUM;
+		CAN_SEND = 1;
+		printf("Corret \n");
+	}else{
+		// Send NACK
+		packetToA.acknum = ((CUR_SEQ_NUM + 1) % 2);
+		printf("Corrupted \n");
+	}
+	// send message to layer 5
+	tolayer5(B, packet.payload);
+	// Send message to A using layer 3
+	tolayer3(B, packetToA);
 	return 0;
 }
 
