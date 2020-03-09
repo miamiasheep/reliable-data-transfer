@@ -48,6 +48,7 @@ int A_input(struct pkt packet)
 	if(packet.acknum == CUR_SEQ_NUM)
 	{
 		// Do not have to resent, just add CUR_SEQ_NUM
+		stoptimer(A);
 		CUR_SEQ_NUM = ((CUR_SEQ_NUM + 1) % 2);
 	}else
 	{
