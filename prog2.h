@@ -102,6 +102,7 @@ void init();
 float jimsrand();
 void generate_next_arrival();
 void printevlist();
+void starttimer(int, float);
 void stoptimer(int);
 void insertevent(struct event *);
 void tolayer3(int, struct pkt);

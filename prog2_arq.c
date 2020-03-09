@@ -11,11 +11,12 @@ int A_output(struct msg message)
 {
 	/* There is some message currently transit
 	   We cannot send packet now.*/
+	printf("A_output\n");
 	if(CAN_SEND == 0)
 	{
+		printf("still have other packets transiting.");
 		return 0;
 	}
-	printf("A_output\n");
 	(void)message;
 	printf("%s", message.data);
 	struct pkt packet;
@@ -28,7 +29,9 @@ int A_output(struct msg message)
 	packet.checksum = calcuateCheckSum(message.data);
 	printf("\ncheckSum: %d\n", packet.checksum);
 	packet.seqnum = CUR_SEQ_NUM;
+	// Set Timer
 	// Send to B using layer 3
+	starttimer(A, 10.0);
 	tolayer3(A, packet);
 	RESERVED_PACKET = packet;
 	CAN_SEND = 0;
@@ -57,6 +60,10 @@ int A_input(struct pkt packet)
 /* called when A's timer goes off */
 int A_timerinterrupt() {
 	printf("A_timerinterrupt\n");
+	// Resend packet
+	printf("Send Reserved Packet\n");
+	starttimer(A, 10.0);
+	tolayer3(A, RESERVED_PACKET);
 	return 0;
 }
 
@@ -100,7 +107,7 @@ int B_input(struct pkt packet)
 int B_timerinterrupt() {
 	printf("B_timerinterrupt\n");
 	return 0;
-	}
+}
 
 /* the following routine will be called once (only) before any other */
 /* entity B routines are called. You can use it to do any initialization */
@@ -133,7 +140,6 @@ int main()
   B_init();
 
   for (;; ) {
-	printf("loop ...\n");
     eventptr = evlist; /* get next event to simulate */
     if (NULL == eventptr) {
 	  printf("terminate");
