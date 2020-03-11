@@ -2,15 +2,10 @@
 #include "helper.h"
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
-<<<<<<< HEAD
 int NEXT_SEQ_NUM;
 int BASE_INDEX; 
 int WINDOW_SIZE = 8;
 int MAX_INDEX = 100000;
-=======
-int CUR_SEQ_NUM;
-int CAN_SEND;
->>>>>>> 7b2bf43f5543e3c8a779f142c04f133deb94435a
 float TIME_TO_INTERRUPT = 100.0;
 struct pkt RESERVED_PACKET;
 
@@ -77,7 +72,6 @@ int A_timerinterrupt() {
 	// Resend all the packet in the windows
 	printf("A_timerinterrupt\n");
 	printf("Send all Reserved Packet\n");
-	// Resend packet
 	starttimer(A, TIME_TO_INTERRUPT);
 	tolayer3(A, RESERVED_PACKET);
 	return 0;
