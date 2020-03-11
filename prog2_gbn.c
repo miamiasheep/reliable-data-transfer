@@ -2,8 +2,9 @@
 #include "helper.h"
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
-int CUR_SEQ_NUM = 0;
-int CAN_SEND = 1;
+int CUR_SEQ_NUM;
+int CAN_SEND;
+float TIME_TO_INTERRUPT = 100.0;
 struct pkt RESERVED_PACKET;
 
 /* called from layer 5, passed the data to be sent to other side */
@@ -27,11 +28,10 @@ int A_output(struct msg message)
 		index += 1;
 	}
 	packet.checksum = calcuateCheckSum(message.data);
-	printf("\ncheckSum: %d\n", packet.checksum);
 	packet.seqnum = CUR_SEQ_NUM;
 	// Set Timer
 	// Send to B using layer 3
-	starttimer(A, 10.0);
+	starttimer(A, TIME_TO_INTERRUPT);
 	tolayer3(A, packet);
 	RESERVED_PACKET = packet;
 	CAN_SEND = 0;
@@ -43,16 +43,27 @@ int A_input(struct pkt packet)
 {
 	printf("A_input\n");
 	(void)packet;
+	// check whether the ACK is corrupted
+	int checkSum = calcuateCheckSum(packet.payload);
+	if(checkSum != packet.checksum)
+	{
+		// resend the packet
+		printf("Resent packet due to corrupted ACK\n");
+		tolayer3(A, RESERVED_PACKET);
+		return 0;
+	}
 	// See the ACK and determine whether to resent
 	// acknum equals to CUR_SEQ_NUM means an ACK
 	if(packet.acknum == CUR_SEQ_NUM)
 	{
 		// Do not have to resent, just add CUR_SEQ_NUM
+		printf("Receive ACK\n");
 		stoptimer(A);
 		CUR_SEQ_NUM = ((CUR_SEQ_NUM + 1) % 2);
 	}else
 	{
 		// This is a NACK, we have to resend the packet
+		printf("Recieve NACK. Resend the packet.\n");
 		tolayer3(A, RESERVED_PACKET);
 	}
 	return 0;
@@ -63,7 +74,7 @@ int A_timerinterrupt() {
 	printf("A_timerinterrupt\n");
 	// Resend packet
 	printf("Send Reserved Packet\n");
-	starttimer(A, 10.0);
+	starttimer(A, TIME_TO_INTERRUPT);
 	tolayer3(A, RESERVED_PACKET);
 	return 0;
 }
@@ -72,6 +83,8 @@ int A_timerinterrupt() {
 /* entity A routines are called. You can use it to do any initialization */
 int A_init() {
 	printf("A init!\n");
+	CUR_SEQ_NUM = 0;
+	CAN_SEND = 1;
 	return 0;
 }
 
@@ -100,6 +113,8 @@ int B_input(struct pkt packet)
 	// send message to layer 5
 	tolayer5(B, packet.payload);
 	// Send message to A using layer 3
+	checkSum = calcuateCheckSum(packetToA.payload);
+	packetToA.checksum = checkSum;
 	tolayer3(B, packetToA);
 	return 0;
 }
@@ -222,7 +237,7 @@ void init() /* initialize the simulator */
 {
   int i;
   float sum, avg;
-
+  /***
   printf("-----  Stop and Wait Network Simulator Version 1.1 -------- \n\n");
   printf("Enter the number of messages to simulate: ");
   scanf("%d", &nsimmax);
@@ -234,7 +249,14 @@ void init() /* initialize the simulator */
   scanf("%f", &lambda);
   printf("Enter TRACE:");
   scanf("%d", &TRACE);
-
+  ***/
+  // configuration
+  nsimmax = 10;
+  lossprob = 0.1;
+  corruptprob = 0.3;
+  lambda = 1000;
+  TRACE = 2;
+  
   srand(rand_seed); /* init random number generator */
   sum = 0.0;   /* test random number generator for students */
   for (i = 0; i < 1000; i++) {
