@@ -1,16 +1,19 @@
 #include "prog2.h"
 #include "helper.h"
+#define BUFFER_SIZE 10000
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
 int NEXT_SEQ_NUM;
 int BASE_INDEX; 
 int WINDOW_SIZE = 8;
+
+// Over this buffersize I will drop my packet
 int MAX_INDEX = 100000;
-float TIME_TO_INTERRUPT = 100.0;
-struct pkt RESERVED_PACKET;
+float TIME_TO_INTERRUPT = 30.0;
+struct pkt RESERVED_PACKET[BUFFER_SIZE];
 
 // B side variable
-int EXPECTED_SEQ_NUM = 0;
+int EXPECTED_SEQ_NUM;
 
 /* called from layer 5, passed the data to be sent to other side */
 int A_output(struct msg message)
@@ -18,9 +21,12 @@ int A_output(struct msg message)
 	/* There is some message currently transit
 	   We cannot send packet now.*/
 	printf("A_output\n");
-	// nextseqnum < base + n
+	
+	// nextseqnum < base + n (Suppose window_size equals to buffer_size)
 	if (NEXT_SEQ_NUM >= BASE_INDEX + WINDOW_SIZE)
 	{
+		printf("BASE_INDEX: %d\n", BASE_INDEX);
+		printf("NEXT_SEQ_NUM: %d\n", NEXT_SEQ_NUM);
 		printf("cannot send the data because there are more than %d packets transmitting\n", WINDOW_SIZE);
 		return 0;
 	}
@@ -28,20 +34,24 @@ int A_output(struct msg message)
 	printf("%s", message.data);
 	struct pkt packet;
 	int index = 0;
+	// copy the message
 	while(message.data[index] != 0 && index < 20)
 	{
 		packet.payload[index] = message.data[index];
-		index += 1;
+		index++;
 	}
 	packet.seqnum = NEXT_SEQ_NUM;
 	packet.checksum = calcuateCheckSum(message.data);
 	// Set Timer
 	// Send to B using layer 3
-	starttimer(A, TIME_TO_INTERRUPT);
+	if(BASE_INDEX == NEXT_SEQ_NUM)
+	{
+		starttimer(A, TIME_TO_INTERRUPT);
+	}
 	tolayer3(A, packet);
 	// NEED to Have A buffer to store the reserved packet.
-	RESERVED_PACKET = packet;
-	NEXT_SEQ_NUM ++;
+	RESERVED_PACKET[NEXT_SEQ_NUM] = packet;
+	NEXT_SEQ_NUM = (NEXT_SEQ_NUM + 1) % BUFFER_SIZE;
 	return 1;
 }
 
@@ -59,21 +69,36 @@ int A_input(struct pkt packet)
 		return 0;
 	}
 	printf("Receive ACK\n");
-	BASE_INDEX = packet.acknum + 1;
+	BASE_INDEX = (packet.acknum + 1) % BUFFER_SIZE;
 	if(BASE_INDEX == NEXT_SEQ_NUM)
 	{
 		stoptimer(A);
+	}else
+	{
+		starttimer(A, TIME_TO_INTERRUPT);
 	}
 	return 0;
 }
 
 /* called when A's timer goes off */
 int A_timerinterrupt() {
-	// Resend all the packet in the windows
+	// Resend all the packets in the windows
 	printf("A_timerinterrupt\n");
-	printf("Send all Reserved Packet\n");
+	printf("Send all Reserved Packets\n");
 	starttimer(A, TIME_TO_INTERRUPT);
-	tolayer3(A, RESERVED_PACKET);
+	for(int i = 0; i < BASE_INDEX + WINDOW_SIZE; i++)
+	{
+		printf("%s\n", RESERVED_PACKET[i % BUFFER_SIZE].payload);
+	}
+	printf("======================================\n");
+	for(int i = BASE_INDEX; i < BASE_INDEX + WINDOW_SIZE; i++)
+	{
+		if(i < NEXT_SEQ_NUM)
+		{
+			printf("%s\n", RESERVED_PACKET[i % BUFFER_SIZE].payload);
+			tolayer3(A, RESERVED_PACKET[i % BUFFER_SIZE]);
+		}
+	}
 	return 0;
 }
 
@@ -97,20 +122,23 @@ int B_input(struct pkt packet)
 	printf("%s\n", packet.payload);
 	int checkSum = calcuateCheckSum(packet.payload);
 	// Check whether the message is corrupted
-	if(checkSum == packet.checksum){
+	if(checkSum == packet.checksum && EXPECTED_SEQ_NUM == packet.seqnum){
 		// Send ACK
-		packetToA.acknum = NEXT_SEQ_NUM;
+		packetToA.acknum = packet.seqnum;
+		EXPECTED_SEQ_NUM ++;
 		printf("Corret \n");
 	}else{
 		printf("Corrupted \n");
 		return 0;
 	}
-	// send message to layer 5
-	tolayer5(B, packet.payload);
+	printf("Expected Number: %d", EXPECTED_SEQ_NUM);
 	// Send message to A using layer 3
 	checkSum = calcuateCheckSum(packetToA.payload);
 	packetToA.checksum = checkSum;
 	tolayer3(B, packetToA);
+	
+	// send message to layer 5
+	tolayer5(B, packet.payload);
 	return 0;
 }
 
@@ -247,10 +275,10 @@ void init() /* initialize the simulator */
   scanf("%d", &TRACE);
   ***/
   // configuration
-  nsimmax = 10;
+  nsimmax = 50;
   lossprob = 0.1;
   corruptprob = 0.3;
-  lambda = 1000;
+  lambda = 10;
   TRACE = 2;
   
   srand(rand_seed); /* init random number generator */
