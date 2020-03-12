@@ -2,10 +2,15 @@
 #include "helper.h"
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
-int CUR_SEQ_NUM;
-int CAN_SEND;
+int NEXT_SEQ_NUM;
+int BASE_INDEX; 
+int WINDOW_SIZE = 8;
+int MAX_INDEX = 100000;
 float TIME_TO_INTERRUPT = 100.0;
 struct pkt RESERVED_PACKET;
+
+// B side variable
+int EXPECTED_SEQ_NUM = 0;
 
 /* called from layer 5, passed the data to be sent to other side */
 int A_output(struct msg message)
@@ -13,9 +18,10 @@ int A_output(struct msg message)
 	/* There is some message currently transit
 	   We cannot send packet now.*/
 	printf("A_output\n");
-	if(CAN_SEND == 0)
+	// nextseqnum < base + n
+	if (NEXT_SEQ_NUM >= BASE_INDEX + WINDOW_SIZE)
 	{
-		printf("still have other packets transiting.");
+		printf("cannot send the data because there are more than %d packets transmitting\n", WINDOW_SIZE);
 		return 0;
 	}
 	(void)message;
@@ -27,14 +33,15 @@ int A_output(struct msg message)
 		packet.payload[index] = message.data[index];
 		index += 1;
 	}
+	packet.seqnum = NEXT_SEQ_NUM;
 	packet.checksum = calcuateCheckSum(message.data);
-	packet.seqnum = CUR_SEQ_NUM;
 	// Set Timer
 	// Send to B using layer 3
 	starttimer(A, TIME_TO_INTERRUPT);
 	tolayer3(A, packet);
+	// NEED to Have A buffer to store the reserved packet.
 	RESERVED_PACKET = packet;
-	CAN_SEND = 0;
+	NEXT_SEQ_NUM ++;
 	return 1;
 }
 
@@ -47,33 +54,24 @@ int A_input(struct pkt packet)
 	int checkSum = calcuateCheckSum(packet.payload);
 	if(checkSum != packet.checksum)
 	{
-		// resend the packet
-		printf("Resent packet due to corrupted ACK\n");
-		tolayer3(A, RESERVED_PACKET);
+		// Corrupted ACK. Do Nothing. 
+		printf("Corrupted ACK. Do Nothing. \n");
 		return 0;
 	}
-	// See the ACK and determine whether to resent
-	// acknum equals to CUR_SEQ_NUM means an ACK
-	if(packet.acknum == CUR_SEQ_NUM)
+	printf("Receive ACK\n");
+	BASE_INDEX = packet.acknum + 1;
+	if(BASE_INDEX == NEXT_SEQ_NUM)
 	{
-		// Do not have to resent, just add CUR_SEQ_NUM
-		printf("Receive ACK\n");
 		stoptimer(A);
-		CUR_SEQ_NUM = ((CUR_SEQ_NUM + 1) % 2);
-	}else
-	{
-		// This is a NACK, we have to resend the packet
-		printf("Recieve NACK. Resend the packet.\n");
-		tolayer3(A, RESERVED_PACKET);
 	}
 	return 0;
 }
 
 /* called when A's timer goes off */
 int A_timerinterrupt() {
+	// Resend all the packet in the windows
 	printf("A_timerinterrupt\n");
-	// Resend packet
-	printf("Send Reserved Packet\n");
+	printf("Send all Reserved Packet\n");
 	starttimer(A, TIME_TO_INTERRUPT);
 	tolayer3(A, RESERVED_PACKET);
 	return 0;
@@ -83,8 +81,8 @@ int A_timerinterrupt() {
 /* entity A routines are called. You can use it to do any initialization */
 int A_init() {
 	printf("A init!\n");
-	CUR_SEQ_NUM = 0;
-	CAN_SEND = 1;
+	NEXT_SEQ_NUM = 0;
+	BASE_INDEX = 0;
 	return 0;
 }
 
@@ -97,18 +95,15 @@ int B_input(struct pkt packet)
 	(void)packet;
 	struct pkt packetToA;
 	printf("%s\n", packet.payload);
-	// Check whether the message is corrupted
 	int checkSum = calcuateCheckSum(packet.payload);
-	// Send ACK or NACK
+	// Check whether the message is corrupted
 	if(checkSum == packet.checksum){
 		// Send ACK
-		packetToA.acknum = CUR_SEQ_NUM;
-		CAN_SEND = 1;
+		packetToA.acknum = NEXT_SEQ_NUM;
 		printf("Corret \n");
 	}else{
-		// Send NACK
-		packetToA.acknum = ((CUR_SEQ_NUM + 1) % 2);
 		printf("Corrupted \n");
+		return 0;
 	}
 	// send message to layer 5
 	tolayer5(B, packet.payload);
@@ -129,6 +124,7 @@ int B_timerinterrupt() {
 /* entity B routines are called. You can use it to do any initialization */
 int B_init() {
 	printf("B_init\n");
+	EXPECTED_SEQ_NUM = 0;
 	return 0;
 }
 
