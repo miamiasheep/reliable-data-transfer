@@ -22,8 +22,3 @@ int calcuateCheckSum(char* input)
     }
     return checkSum;
 }
-
-void sendPacket()
-{
-	
-}
