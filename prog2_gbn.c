@@ -4,11 +4,10 @@
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
 int NEXT_SEQ_NUM;
-int BASE_INDEX; 
+int BASE_INDEX;
+int BUFFER_INDEX; 
 int WINDOW_SIZE = 8;
 
-// Over this buffersize I will drop my packet
-int MAX_INDEX = 100000;
 float TIME_TO_INTERRUPT = 30.0;
 struct pkt RESERVED_PACKET[BUFFER_SIZE];
 
@@ -18,20 +17,10 @@ int EXPECTED_SEQ_NUM;
 /* called from layer 5, passed the data to be sent to other side */
 int A_output(struct msg message)
 {
-	/* There is some message currently transit
-	   We cannot send packet now.*/
 	printf("A_output\n");
-	
-	// nextseqnum < base + n (Suppose window_size equals to buffer_size)
-	if (NEXT_SEQ_NUM >= BASE_INDEX + WINDOW_SIZE)
-	{
-		printf("BASE_INDEX: %d\n", BASE_INDEX);
-		printf("NEXT_SEQ_NUM: %d\n", NEXT_SEQ_NUM);
-		printf("cannot send the data because there are more than %d packets transmitting\n", WINDOW_SIZE);
-		return 0;
-	}
+	// make the packet
 	(void)message;
-	printf("%s", message.data);
+	printf("%s\n", message.data);
 	struct pkt packet;
 	int index = 0;
 	// copy the message
@@ -40,18 +29,33 @@ int A_output(struct msg message)
 		packet.payload[index] = message.data[index];
 		index++;
 	}
-	packet.seqnum = NEXT_SEQ_NUM;
+	packet.seqnum = BUFFER_INDEX;
 	packet.checksum = calcuateCheckSum(message.data);
-	// Set Timer
-	// Send to B using layer 3
-	if(BASE_INDEX == NEXT_SEQ_NUM)
+	
+	// store packet in the buffer
+	RESERVED_PACKET[BUFFER_INDEX] = packet;
+	BUFFER_INDEX = (BUFFER_INDEX + 1) % BUFFER_SIZE;
+	
+	while(NEXT_SEQ_NUM < BUFFER_INDEX)
 	{
-		starttimer(A, TIME_TO_INTERRUPT);
+		// nextseqnum < base + n (Suppose window_size equals to buffer_size)
+		if (NEXT_SEQ_NUM >= BASE_INDEX + WINDOW_SIZE)
+		{
+			printf("BASE_INDEX: %d\n", BASE_INDEX);
+			printf("NEXT_SEQ_NUM: %d\n", NEXT_SEQ_NUM);
+			printf("cannot send the data because there are more than %d packets transmitting\n", WINDOW_SIZE);
+			return 0;
+		}
+		
+		// Set Timer
+		// Send to B using layer 3
+		if(BASE_INDEX == NEXT_SEQ_NUM)
+		{
+			starttimer(A, TIME_TO_INTERRUPT);
+		}
+		tolayer3(A, RESERVED_PACKET[NEXT_SEQ_NUM]);
+		NEXT_SEQ_NUM = (NEXT_SEQ_NUM + 1) % BUFFER_SIZE;
 	}
-	tolayer3(A, packet);
-	// NEED to Have A buffer to store the reserved packet.
-	RESERVED_PACKET[NEXT_SEQ_NUM] = packet;
-	NEXT_SEQ_NUM = (NEXT_SEQ_NUM + 1) % BUFFER_SIZE;
 	return 1;
 }
 
@@ -86,14 +90,19 @@ int A_timerinterrupt() {
 	printf("A_timerinterrupt\n");
 	printf("Send all Reserved Packets\n");
 	starttimer(A, TIME_TO_INTERRUPT);
+	/***
 	for(int i = 0; i < BASE_INDEX + WINDOW_SIZE; i++)
 	{
 		printf("%s\n", RESERVED_PACKET[i % BUFFER_SIZE].payload);
 	}
 	printf("======================================\n");
+	***/
+	printf("BASE_INDEX: %d\n", BASE_INDEX);
+	printf("NEXT_SEQ_NUM: %d\n", NEXT_SEQ_NUM);
+	
 	for(int i = BASE_INDEX; i < BASE_INDEX + WINDOW_SIZE; i++)
 	{
-		if(i < NEXT_SEQ_NUM)
+		if(i <= NEXT_SEQ_NUM)
 		{
 			printf("%s\n", RESERVED_PACKET[i % BUFFER_SIZE].payload);
 			tolayer3(A, RESERVED_PACKET[i % BUFFER_SIZE]);
@@ -108,6 +117,7 @@ int A_init() {
 	printf("A init!\n");
 	NEXT_SEQ_NUM = 0;
 	BASE_INDEX = 0;
+	BUFFER_INDEX = 0;
 	return 0;
 }
 

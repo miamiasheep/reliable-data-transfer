@@ -1,3 +1,4 @@
+#include "prog2.h"
 int calcuateCheckSum(char* input)
 {
     int checkSum = 0;
@@ -20,4 +21,9 @@ int calcuateCheckSum(char* input)
         index ++;
     }
     return checkSum;
+}
+
+void sendPacket()
+{
+	
 }
