@@ -72,7 +72,7 @@ int A_input(struct pkt packet)
 		printf("Corrupted ACK. Do Nothing. \n");
 		return 0;
 	}
-	printf("Receive ACK\n");
+	printf("Receive ACK %d \n", packet.acknum);
 	BASE_INDEX = (packet.acknum + 1) % BUFFER_SIZE;
 	if(BASE_INDEX == NEXT_SEQ_NUM)
 	{
@@ -138,7 +138,7 @@ int B_input(struct pkt packet)
 		EXPECTED_SEQ_NUM ++;
 		printf("Corret \n");
 	}else{
-		printf("Corrupted \n");
+		printf("Corrupted or don't match expected number \n");
 		return 0;
 	}
 	printf("Expected Number: %d", EXPECTED_SEQ_NUM);
