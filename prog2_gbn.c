@@ -79,6 +79,7 @@ int A_input(struct pkt packet)
 		stoptimer(A);
 	}else
 	{
+		stoptimer(A);
 		starttimer(A, TIME_TO_INTERRUPT);
 	}
 	return 0;
@@ -539,6 +540,7 @@ void tolayer5(int AorB, const char * datasent)
 {
   (void)AorB;
   int i;
+  printf("Layer 5:\n%s\n", datasent);
   if (TRACE > 2) {
     printf("          TOLAYER5: data received: ");
     for (i = 0; i < 20; i++) {

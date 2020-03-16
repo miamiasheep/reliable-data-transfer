@@ -3,6 +3,7 @@
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
 int CUR_SEQ_NUM;
+int EXPECTED_SEQ_NUM;
 int CAN_SEND;
 float TIME_TO_INTERRUPT = 100.0;
 struct pkt RESERVED_PACKET;
@@ -27,8 +28,8 @@ int A_output(struct msg message)
 		packet.payload[index] = message.data[index];
 		index += 1;
 	}
-	packet.checksum = calcuateCheckSum(packet);
 	packet.seqnum = CUR_SEQ_NUM;
+	packet.checksum = calcuateCheckSum(packet);
 	// Set Timer
 	// Send to B using layer 3
 	starttimer(A, TIME_TO_INTERRUPT);
@@ -104,14 +105,18 @@ int B_input(struct pkt packet)
 		// Send ACK
 		packetToA.acknum = CUR_SEQ_NUM;
 		CAN_SEND = 1;
+		// send message to layer 5
+		if(EXPECTED_SEQ_NUM == CUR_SEQ_NUM)
+		{
+			tolayer5(B, packet.payload);
+			EXPECTED_SEQ_NUM = (EXPECTED_SEQ_NUM + 1) % 2;
+		}
 		printf("Corret \n");
 	}else{
 		// Send NACK
 		packetToA.acknum = ((CUR_SEQ_NUM + 1) % 2);
 		printf("Corrupted \n");
 	}
-	// send message to layer 5
-	tolayer5(B, packet.payload);
 	// Send message to A using layer 3
 	checkSum = calcuateCheckSum(packetToA);
 	packetToA.checksum = checkSum;
@@ -129,6 +134,7 @@ int B_timerinterrupt() {
 /* entity B routines are called. You can use it to do any initialization */
 int B_init() {
 	printf("B_init\n");
+	EXPECTED_SEQ_NUM = 0;
 	return 0;
 }
 
@@ -251,7 +257,7 @@ void init() /* initialize the simulator */
   scanf("%d", &TRACE);
   ***/
   // configuration
-  nsimmax = 10;
+  nsimmax = 30;
   lossprob = 0.1;
   corruptprob = 0.3;
   lambda = 1000;
@@ -505,6 +511,7 @@ void tolayer5(int AorB, const char * datasent)
 {
   (void)AorB;
   int i;
+  printf("Layer 5:\n%s\n", datasent);
   if (TRACE > 2) {
     printf("          TOLAYER5: data received: ");
     for (i = 0; i < 20; i++) {

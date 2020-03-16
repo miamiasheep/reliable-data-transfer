@@ -11,6 +11,11 @@ prog2_gbn: prog2_gbn.c prog2.h helper.h
 
 prog2_sr: prog2_sr.c prog2.h helper.h
 	gcc -Wall -Wextra -g prog2_sr.c -o prog2_sr
-	
+
+run: 
+	./prog2_arq > log_arq.txt
+	./prog2_gbn > log_gbn.txt
+	./prog2_sr > log_sr.txt
+
 clean:
 	rm -f prog2 prog2_arq prog2_gbn *~ *.swp
