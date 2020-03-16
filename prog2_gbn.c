@@ -30,7 +30,7 @@ int A_output(struct msg message)
 		index++;
 	}
 	packet.seqnum = BUFFER_INDEX;
-	packet.checksum = calcuateCheckSum(message.data);
+	packet.checksum = calcuateCheckSum(packet);
 	
 	// store packet in the buffer
 	RESERVED_PACKET[BUFFER_INDEX] = packet;
@@ -65,7 +65,7 @@ int A_input(struct pkt packet)
 	printf("A_input\n");
 	(void)packet;
 	// check whether the ACK is corrupted
-	int checkSum = calcuateCheckSum(packet.payload);
+	int checkSum = calcuateCheckSum(packet);
 	if(checkSum != packet.checksum)
 	{
 		// Corrupted ACK. Do Nothing. 
@@ -130,7 +130,7 @@ int B_input(struct pkt packet)
 	(void)packet;
 	struct pkt packetToA;
 	printf("%s\n", packet.payload);
-	int checkSum = calcuateCheckSum(packet.payload);
+	int checkSum = calcuateCheckSum(packet);
 	// Check whether the message is corrupted
 	if(checkSum == packet.checksum && EXPECTED_SEQ_NUM == packet.seqnum){
 		// Send ACK
@@ -143,7 +143,7 @@ int B_input(struct pkt packet)
 	}
 	printf("Expected Number: %d", EXPECTED_SEQ_NUM);
 	// Send message to A using layer 3
-	checkSum = calcuateCheckSum(packetToA.payload);
+	checkSum = calcuateCheckSum(packetToA);
 	packetToA.checksum = checkSum;
 	tolayer3(B, packetToA);
 	

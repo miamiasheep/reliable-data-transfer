@@ -1,6 +1,8 @@
 #include "prog2.h"
-int calcuateCheckSum(char* input)
+
+int calcuateCheckSum(struct pkt packet)
 {
+	char *input = packet.payload;
     int checkSum = 0;
     int index = 0;
     while(input[index]!=0 && index < 20)
@@ -20,5 +22,5 @@ int calcuateCheckSum(char* input)
         checkSum = ~checkSum & 255;
         index ++;
     }
-    return checkSum;
+    return checkSum + packet.acknum + packet.seqnum;
 }

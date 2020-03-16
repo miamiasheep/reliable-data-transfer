@@ -27,7 +27,7 @@ int A_output(struct msg message)
 		packet.payload[index] = message.data[index];
 		index += 1;
 	}
-	packet.checksum = calcuateCheckSum(message.data);
+	packet.checksum = calcuateCheckSum(packet);
 	packet.seqnum = CUR_SEQ_NUM;
 	// Set Timer
 	// Send to B using layer 3
@@ -44,7 +44,7 @@ int A_input(struct pkt packet)
 	printf("A_input\n");
 	(void)packet;
 	// check whether the ACK is corrupted
-	int checkSum = calcuateCheckSum(packet.payload);
+	int checkSum = calcuateCheckSum(packet);
 	if(checkSum != packet.checksum)
 	{
 		// resend the packet
@@ -98,7 +98,7 @@ int B_input(struct pkt packet)
 	struct pkt packetToA;
 	printf("%s\n", packet.payload);
 	// Check whether the message is corrupted
-	int checkSum = calcuateCheckSum(packet.payload);
+	int checkSum = calcuateCheckSum(packet);
 	// Send ACK or NACK
 	if(checkSum == packet.checksum){
 		// Send ACK
@@ -113,7 +113,7 @@ int B_input(struct pkt packet)
 	// send message to layer 5
 	tolayer5(B, packet.payload);
 	// Send message to A using layer 3
-	checkSum = calcuateCheckSum(packetToA.payload);
+	checkSum = calcuateCheckSum(packetToA);
 	packetToA.checksum = checkSum;
 	tolayer3(B, packetToA);
 	return 0;
