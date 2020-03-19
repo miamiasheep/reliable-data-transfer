@@ -50,6 +50,8 @@ int A_input(struct pkt packet)
 	{
 		// resend the packet
 		printf("Resent packet due to corrupted ACK\n");
+		stoptimer(A);
+		starttimer(A, TIME_TO_INTERRUPT);
 		tolayer3(A, RESERVED_PACKET);
 		return 0;
 	}
@@ -59,12 +61,14 @@ int A_input(struct pkt packet)
 	{
 		// Do not have to resent, just add CUR_SEQ_NUM
 		printf("Receive ACK\n");
-		stoptimer(A);
 		CUR_SEQ_NUM = ((CUR_SEQ_NUM + 1) % 2);
+		stoptimer(A);
 	}else
 	{
 		// This is a NACK, we have to resend the packet
 		printf("Recieve NACK. Resend the packet.\n");
+		stoptimer(A);
+		starttimer(A, TIME_TO_INTERRUPT);
 		tolayer3(A, RESERVED_PACKET);
 	}
 	return 0;

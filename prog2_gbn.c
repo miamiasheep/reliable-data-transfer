@@ -142,7 +142,7 @@ int B_input(struct pkt packet)
 		printf("Corrupted or don't match expected number \n");
 		return 0;
 	}
-	printf("Expected Number: %d", EXPECTED_SEQ_NUM);
+	printf("Expected Number: %d\n", EXPECTED_SEQ_NUM);
 	// Send message to A using layer 3
 	checkSum = calcuateCheckSum(packetToA);
 	packetToA.checksum = checkSum;

@@ -113,7 +113,8 @@ int A_input(struct pkt packet)
 
 /* called when A's timer goes off */
 int A_timerinterrupt() {
-	// Resend all the packets in the windows
+	// Resend all the packets in the windows (Go Back N implementation)
+	// Need to change to Selective Repeated
 	printf("A_timerinterrupt\n");
 	printf("Send all Reserved Packets\n");
 	starttimer(A, TIME_TO_INTERRUPT);
