@@ -3,17 +3,17 @@ B_init
 
 EVENT time: 19.620251,  type: 1, fromlayer5  entity: 0
 A_output
-aaaaaaaaaaaaaaaaaaaaÿ
+aaaaaaaaaaaaaaaaaaaaý
           TOLAYER3: packet being lost
 
 EVENT time: 34.355133,  type: 1, fromlayer5  entity: 0
 A_output
-bbbbbbbbbbbbbbbbbbbbÿ
+bbbbbbbbbbbbbbbbbbbbý
           TOLAYER3: packet being corrupted
 
 EVENT time: 41.475899,  type: 1, fromlayer5  entity: 0
 A_output
-ccccccccccccccccccccÿ
+ccccccccccccccccccccý
 
 EVENT time: 41.616379,  type: 2, fromlayer3  entity: 1
 B_input
@@ -21,27 +21,17 @@ Zbbbbbbbbbbbbbbbbbbb
 Corrupted
 
 EVENT time: 49.620251,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 0
-NEXT_SEQ_NUM: 3
+0_timerinterrupt
 aaaaaaaaaaaaaaaaaaaa
-bbbbbbbbbbbbbbbbbbbb
-cccccccccccccccccccc
-
 
 EVENT time: 51.490219,  type: 2, fromlayer3  entity: 1
 B_input
 cccccccccccccccccccc
 Corret 
 
-EVENT time: 53.365501,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 2 
-
 EVENT time: 53.423401,  type: 1, fromlayer5  entity: 0
 A_output
-ddddddddddddddddddddÿ
+ddddddddddddddddddddý
 
 EVENT time: 60.207829,  type: 2, fromlayer3  entity: 1
 B_input
@@ -50,12 +40,31 @@ Expected Number: 0
 Layer 5:
 aaaaaaaaaaaaaaaaaaaa
 Corret 
+          TOLAYER3: packet being corrupted
 
-EVENT time: 66.835182,  type: 2, fromlayer3  entity: 0
+EVENT time: 60.255386,  type: 2, fromlayer3  entity: 0
 A_input
-Receive ACK 0 
+Receive ACK 2 
 
-EVENT time: 68.972992,  type: 2, fromlayer3  entity: 1
+EVENT time: 64.355133,  type: 0, timerinterrupt   entity: 1
+1_timerinterrupt
+bbbbbbbbbbbbbbbbbbbb
+
+EVENT time: 65.421455,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 69.481201,  type: 2, fromlayer3  entity: 1
+B_input
+dddddddddddddddddddd
+Corret 
+          TOLAYER3: packet being lost
+
+EVENT time: 69.619797,  type: 1, fromlayer5  entity: 0
+A_output
+eeeeeeeeeeeeeeeeeeeeý
+
+EVENT time: 78.675491,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
 Expected Number: 1 
@@ -63,122 +72,24 @@ Layer 5:
 bbbbbbbbbbbbbbbbbbbb
 Expected Number: 2 
 Layer 5:
-cccccccccccccccccccc
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 71.632935,  type: 1, fromlayer5  entity: 0
-A_output
-eeeeeeeeeeeeeeeeeeeeÿ
-          TOLAYER3: packet being corrupted
-
-EVENT time: 72.006348,  type: 2, fromlayer3  entity: 1
-B_input
-cccccccccccccccccccc
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 77.555054,  type: 2, fromlayer3  entity: 0
-A_input
-Corrupted ACK. Do Nothing. 
-
-EVENT time: 80.411530,  type: 2, fromlayer3  entity: 1
-B_input
-
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 80.858360,  type: 2, fromlayer3  entity: 0
-A_input
-Corrupted ACK. Do Nothing. 
-
-EVENT time: 81.488785,  type: 2, fromlayer3  entity: 1
-B_input
-dddddddddddddddddddd
+cccccccccccccccccccc
 Expected Number: 3 
 Layer 5:
 dddddddddddddddddddd
 Corret 
-
-EVENT time: 83.791725,  type: 2, fromlayer3  entity: 1
-B_input
-Zeeeeeeeeeeeeeeeeeee
-Corrupted
-
-EVENT time: 84.970940,  type: 1, fromlayer5  entity: 0
-A_output
-ffffffffffffffffffffÿ
           TOLAYER3: packet being corrupted
 
-EVENT time: 86.235283,  type: 2, fromlayer3  entity: 0
-A_input
-Corrupted ACK. Do Nothing. 
-
-EVENT time: 86.630547,  type: 2, fromlayer3  entity: 1
-B_input
-Zfffffffffffffffffff
-Corrupted
-
-EVENT time: 91.362923,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 3 
-
-EVENT time: 95.157310,  type: 1, fromlayer5  entity: 0
-A_output
-ggggggggggggggggggggÿ
-
-EVENT time: 99.053253,  type: 2, fromlayer3  entity: 1
-B_input
-gggggggggggggggggggg
-Corret 
+EVENT time: 79.620255,  type: 0, timerinterrupt   entity: 0
+0_timerinterrupt
+aaaaaaaaaaaaaaaaaaaa
           TOLAYER3: packet being corrupted
 
-EVENT time: 104.639427,  type: 2, fromlayer3  entity: 0
-A_input
-Corrupted ACK. Do Nothing. 
-
-EVENT time: 107.251205,  type: 1, fromlayer5  entity: 0
-A_output
-hhhhhhhhhhhhhhhhhhhhÿ
-          TOLAYER3: packet being lost
-
-EVENT time: 110.966118,  type: 1, fromlayer5  entity: 0
-A_output
-iiiiiiiiiiiiiiiiiiiiÿ
+EVENT time: 83.423401,  type: 0, timerinterrupt   entity: 3
+3_timerinterrupt
+dddddddddddddddddddd
           TOLAYER3: packet being corrupted
 
-EVENT time: 112.607948,  type: 2, fromlayer3  entity: 1
-B_input
-Ziiiiiiiiiiiiiiiiiii
-Corrupted
-
-EVENT time: 121.362923,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-bbbbbbbbbbbbbbbbbbbb
-          TOLAYER3: packet being corrupted
-eeeeeeeeeeeeeeeeeeee
-ffffffffffffffffffff
-          TOLAYER3: packet being corrupted
-gggggggggggggggggggg
-hhhhhhhhhhhhhhhhhhhh
-iiiiiiiiiiiiiiiiiiii
-
-EVENT time: 127.616158,  type: 1, fromlayer5  entity: 0
-A_output
-jjjjjjjjjjjjjjjjjjjjÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 127.897865,  type: 2, fromlayer3  entity: 1
-B_input
-Zbbbbbbbbbbbbbbbbbbb
-Corrupted
-
-EVENT time: 130.545181,  type: 2, fromlayer3  entity: 1
+EVENT time: 85.302841,  type: 2, fromlayer3  entity: 1
 B_input
 eeeeeeeeeeeeeeeeeeee
 Expected Number: 4 
@@ -186,97 +97,105 @@ Layer 5:
 eeeeeeeeeeeeeeeeeeee
 Corret 
 
-EVENT time: 131.976288,  type: 1, fromlayer5  entity: 0
+EVENT time: 86.892487,  type: 1, fromlayer5  entity: 0
 A_output
-kkkkkkkkkkkkkkkkkkkkÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
+ffffffffffffffffffffý
+          TOLAYER3: packet being lost
 
-EVENT time: 136.172363,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 4 
-
-EVENT time: 140.405609,  type: 2, fromlayer3  entity: 1
-B_input
-Zfffffffffffffffffff
-Corrupted
-
-EVENT time: 144.684708,  type: 2, fromlayer3  entity: 1
-B_input
-gggggggggggggggggggg
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 149.012100,  type: 1, fromlayer5  entity: 0
-A_output
-llllllllllllllllllllÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 150.472137,  type: 2, fromlayer3  entity: 1
-B_input
-hhhhhhhhhhhhhhhhhhhh
-Corret 
-
-EVENT time: 150.773041,  type: 1, fromlayer5  entity: 0
-A_output
-mmmmmmmmmmmmmmmmmmmmÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 154.146652,  type: 2, fromlayer3  entity: 0
+EVENT time: 87.257553,  type: 2, fromlayer3  entity: 0
 A_input
 Corrupted ACK. Do Nothing. 
 
-EVENT time: 158.161819,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 7 
-
-EVENT time: 159.662811,  type: 1, fromlayer5  entity: 0
+EVENT time: 88.440407,  type: 1, fromlayer5  entity: 0
 A_output
-nnnnnnnnnnnnnnnnnnnnÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
+ggggggggggggggggggggý
 
-EVENT time: 159.800964,  type: 2, fromlayer3  entity: 1
+EVENT time: 89.672539,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 4 
+
+EVENT time: 91.197495,  type: 2, fromlayer3  entity: 1
 B_input
-iiiiiiiiiiiiiiiiiiii
-Corret 
+Zaaaaaaaaaaaaaaaaaaa
+Corrupted
 
-EVENT time: 161.792114,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 8 
-
-EVENT time: 171.112808,  type: 1, fromlayer5  entity: 0
-A_output
-ooooooooooooooooooooÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 187.907761,  type: 1, fromlayer5  entity: 0
-A_output
-ppppppppppppppppppppÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 191.792114,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
+EVENT time: 94.355133,  type: 0, timerinterrupt   entity: 1
+1_timerinterrupt
 bbbbbbbbbbbbbbbbbbbb
-          TOLAYER3: packet being lost
-ffffffffffffffffffff
-gggggggggggggggggggg
           TOLAYER3: packet being corrupted
 
-EVENT time: 194.279297,  type: 2, fromlayer3  entity: 1
+EVENT time: 95.309189,  type: 2, fromlayer3  entity: 1
+B_input
+Zddddddddddddddddddd
+Corrupted
+
+EVENT time: 100.355774,  type: 2, fromlayer3  entity: 1
+B_input
+gggggggggggggggggggg
+Corret 
+
+EVENT time: 102.015381,  type: 2, fromlayer3  entity: 1
+B_input
+Zbbbbbbbbbbbbbbbbbbb
+Corrupted
+
+EVENT time: 103.976280,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 6 
+
+EVENT time: 107.060097,  type: 1, fromlayer5  entity: 0
+A_output
+hhhhhhhhhhhhhhhhhhhhý
+          TOLAYER3: packet being corrupted
+
+EVENT time: 109.620255,  type: 0, timerinterrupt   entity: 0
+0_timerinterrupt
+aaaaaaaaaaaaaaaaaaaa
+
+EVENT time: 112.646271,  type: 2, fromlayer3  entity: 1
+B_input
+Zhhhhhhhhhhhhhhhhhhh
+Corrupted
+
+EVENT time: 113.423401,  type: 0, timerinterrupt   entity: 3
+3_timerinterrupt
+dddddddddddddddddddd
+          TOLAYER3: packet being corrupted
+
+EVENT time: 113.937065,  type: 2, fromlayer3  entity: 1
+B_input
+aaaaaaaaaaaaaaaaaaaa
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 114.387825,  type: 1, fromlayer5  entity: 0
+A_output
+iiiiiiiiiiiiiiiiiiiiý
+BASE_INDEX: 0
+NEXT_SEQ_NUM: 8
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 115.578896,  type: 2, fromlayer3  entity: 1
+B_input
+Zddddddddddddddddddd
+Corrupted
+
+EVENT time: 116.892487,  type: 0, timerinterrupt   entity: 5
+5_timerinterrupt
+ffffffffffffffffffff
+
+EVENT time: 117.987953,  type: 1, fromlayer5  entity: 0
+A_output
+jjjjjjjjjjjjjjjjjjjjý
+BASE_INDEX: 0
+NEXT_SEQ_NUM: 8
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 120.472008,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 123.308998,  type: 2, fromlayer3  entity: 1
 B_input
 ffffffffffffffffffff
 Expected Number: 5 
@@ -284,242 +203,343 @@ Layer 5:
 ffffffffffffffffffff
 Expected Number: 6 
 Layer 5:
-gggggggggggggggggggg
+gggggggggggggggggggg
+Corret 
+
+EVENT time: 124.355133,  type: 0, timerinterrupt   entity: 1
+1_timerinterrupt
+bbbbbbbbbbbbbbbbbbbb
+
+EVENT time: 126.723930,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 5 
+
+EVENT time: 134.210358,  type: 2, fromlayer3  entity: 1
+B_input
+bbbbbbbbbbbbbbbbbbbb
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 137.060089,  type: 0, timerinterrupt   entity: 7
+7_timerinterrupt
+hhhhhhhhhhhhhhhhhhhh
+
+EVENT time: 137.677780,  type: 1, fromlayer5  entity: 0
+A_output
+kkkkkkkkkkkkkkkkkkkký
+BASE_INDEX: 0
+NEXT_SEQ_NUM: 8
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 139.620255,  type: 0, timerinterrupt   entity: 0
+0_timerinterrupt
+aaaaaaaaaaaaaaaaaaaa
+
+EVENT time: 140.022156,  type: 2, fromlayer3  entity: 1
+B_input
+hhhhhhhhhhhhhhhhhhhh
 Expected Number: 7 
 Layer 5:
-hhhhhhhhhhhhhhhhhhhh
+hhhhhhhhhhhhhhhhhhhh
+Corret 
+
+EVENT time: 142.635101,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 143.423401,  type: 0, timerinterrupt   entity: 3
+3_timerinterrupt
+dddddddddddddddddddd
+          TOLAYER3: packet being lost
+
+EVENT time: 144.890457,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 7 
+
+EVENT time: 147.960388,  type: 1, fromlayer5  entity: 0
+A_output
+llllllllllllllllllllý
+BASE_INDEX: 0
+NEXT_SEQ_NUM: 8
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 148.688278,  type: 2, fromlayer3  entity: 1
+B_input
+aaaaaaaaaaaaaaaaaaaa
+Corret 
+
+EVENT time: 154.355133,  type: 0, timerinterrupt   entity: 1
+1_timerinterrupt
+bbbbbbbbbbbbbbbbbbbb
+          TOLAYER3: packet being corrupted
+
+EVENT time: 158.136322,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 0 
+
+EVENT time: 158.532974,  type: 2, fromlayer3  entity: 1
+B_input
+Zbbbbbbbbbbbbbbbbbbb
+Corrupted
+
+EVENT time: 164.526993,  type: 1, fromlayer5  entity: 0
+A_output
+mmmmmmmmmmmmmmmmmmmmý
+BASE_INDEX: 1
+NEXT_SEQ_NUM: 9
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 166.327866,  type: 2, fromlayer3  entity: 1
+B_input
+iiiiiiiiiiiiiiiiiiii
 Expected Number: 8 
 Layer 5:
 iiiiiiiiiiiiiiiiiiii
 Corret 
 
-EVENT time: 200.566925,  type: 1, fromlayer5  entity: 0
-A_output
-qqqqqqqqqqqqqqqqqqqqÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
+EVENT time: 171.309464,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 8 
 
-EVENT time: 202.365906,  type: 2, fromlayer3  entity: 1
+EVENT time: 173.423401,  type: 0, timerinterrupt   entity: 3
+3_timerinterrupt
+dddddddddddddddddddd
+          TOLAYER3: packet being corrupted
+
+EVENT time: 175.722488,  type: 2, fromlayer3  entity: 1
 B_input
-Zggggggggggggggggggg
+Zddddddddddddddddddd
 Corrupted
 
-EVENT time: 203.965836,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 5 
-
-EVENT time: 212.334503,  type: 1, fromlayer5  entity: 0
+EVENT time: 181.321945,  type: 1, fromlayer5  entity: 0
 A_output
-rrrrrrrrrrrrrrrrrrrrÿ
+nnnnnnnnnnnnnnnnnnnný
 BASE_INDEX: 1
 NEXT_SEQ_NUM: 9
 cannot send the data because there are more than 8 packets transmitting
 
-EVENT time: 213.916443,  type: 1, fromlayer5  entity: 0
-A_output
-ssssssssssssssssssssÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 214.962326,  type: 1, fromlayer5  entity: 0
-A_output
-ttttttttttttttttttttÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 215.295593,  type: 1, fromlayer5  entity: 0
-A_output
-uuuuuuuuuuuuuuuuuuuuÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 226.684357,  type: 1, fromlayer5  entity: 0
-A_output
-vvvvvvvvvvvvvvvvvvvvÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 233.965836,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
+EVENT time: 184.355133,  type: 0, timerinterrupt   entity: 1
+1_timerinterrupt
 bbbbbbbbbbbbbbbbbbbb
-gggggggggggggggggggg
+          TOLAYER3: packet being corrupted
 
-EVENT time: 238.614120,  type: 2, fromlayer3  entity: 1
+EVENT time: 190.650543,  type: 2, fromlayer3  entity: 1
+B_input
+Zbbbbbbbbbbbbbbbbbbb
+Corrupted
+
+EVENT time: 200.625366,  type: 1, fromlayer5  entity: 0
+A_output
+ooooooooooooooooooooý
+BASE_INDEX: 1
+NEXT_SEQ_NUM: 9
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 200.958633,  type: 1, fromlayer5  entity: 0
+A_output
+ppppppppppppppppppppý
+BASE_INDEX: 1
+NEXT_SEQ_NUM: 9
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 203.423401,  type: 0, timerinterrupt   entity: 3
+3_timerinterrupt
+dddddddddddddddddddd
+
+EVENT time: 210.248291,  type: 2, fromlayer3  entity: 1
+B_input
+dddddddddddddddddddd
+Corret 
+
+EVENT time: 212.347397,  type: 1, fromlayer5  entity: 0
+A_output
+qqqqqqqqqqqqqqqqqqqqý
+BASE_INDEX: 1
+NEXT_SEQ_NUM: 9
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 214.027908,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 3 
+
+EVENT time: 214.355133,  type: 0, timerinterrupt   entity: 1
+1_timerinterrupt
+bbbbbbbbbbbbbbbbbbbb
+
+EVENT time: 217.567276,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
 Corret 
 
-EVENT time: 239.288818,  type: 1, fromlayer5  entity: 0
-A_output
-wwwwwwwwwwwwwwwwwwwwÿ
-BASE_INDEX: 1
-NEXT_SEQ_NUM: 9
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 241.826263,  type: 2, fromlayer3  entity: 0
+EVENT time: 225.011139,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK 1 
 
-EVENT time: 243.741623,  type: 1, fromlayer5  entity: 0
+EVENT time: 231.790619,  type: 1, fromlayer5  entity: 0
 A_output
-xxxxxxxxxxxxxxxxxxxxÿ
+rrrrrrrrrrrrrrrrrrrrý
+          TOLAYER3: packet being lost
           TOLAYER3: packet being corrupted
-BASE_INDEX: 6
-NEXT_SEQ_NUM: 14
+          TOLAYER3: packet being lost
+BASE_INDEX: 9
+NEXT_SEQ_NUM: 17
 cannot send the data because there are more than 8 packets transmitting
 
-EVENT time: 248.222168,  type: 2, fromlayer3  entity: 1
-B_input
-gggggggggggggggggggg
-Corret 
-
-EVENT time: 254.258957,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 6 
-
-EVENT time: 256.889130,  type: 2, fromlayer3  entity: 1
+EVENT time: 238.520355,  type: 2, fromlayer3  entity: 1
 B_input
 jjjjjjjjjjjjjjjjjjjj
 Expected Number: 9 
 Layer 5:
 jjjjjjjjjjjjjjjjjjjj
 Corret 
-          TOLAYER3: packet being lost
 
-EVENT time: 258.061340,  type: 1, fromlayer5  entity: 0
-A_output
-yyyyyyyyyyyyyyyyyyyyÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
+EVENT time: 242.786072,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 9 
 
-EVENT time: 262.408447,  type: 2, fromlayer3  entity: 1
-B_input
-Zkkkkkkkkkkkkkkkkkkk
-Corrupted
-
-EVENT time: 265.387329,  type: 2, fromlayer3  entity: 1
+EVENT time: 243.479889,  type: 2, fromlayer3  entity: 1
 B_input
 llllllllllllllllllll
-Corret 
+Corrupted
 
-EVENT time: 268.212158,  type: 2, fromlayer3  entity: 1
+EVENT time: 246.304733,  type: 2, fromlayer3  entity: 1
 B_input
 mmmmmmmmmmmmmmmmmmmm
 Corret 
 
-EVENT time: 268.650513,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 11 
+EVENT time: 248.828278,  type: 1, fromlayer5  entity: 0
+A_output
+ssssssssssssssssssssý
+BASE_INDEX: 10
+NEXT_SEQ_NUM: 18
+cannot send the data because there are more than 8 packets transmitting
 
-EVENT time: 272.241302,  type: 2, fromlayer3  entity: 1
+EVENT time: 250.220673,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 12 
+
+EVENT time: 250.333893,  type: 2, fromlayer3  entity: 1
 B_input
 nnnnnnnnnnnnnnnnnnnn
 Corret 
 
-EVENT time: 274.617401,  type: 1, fromlayer5  entity: 0
-A_output
-zzzzzzzzzzzzzzzzzzzzÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 275.907196,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 12 
-
-EVENT time: 277.699677,  type: 2, fromlayer3  entity: 1
+EVENT time: 256.370697,  type: 2, fromlayer3  entity: 1
 B_input
 oooooooooooooooooooo
 Corret 
-          TOLAYER3: packet being corrupted
 
-EVENT time: 279.930298,  type: 2, fromlayer3  entity: 0
+EVENT time: 257.590576,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK 13 
 
-EVENT time: 281.331085,  type: 2, fromlayer3  entity: 0
+EVENT time: 258.417206,  type: 2, fromlayer3  entity: 1
+B_input
+qqqqqqqqqqqqqqqqqqqq
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 258.656006,  type: 1, fromlayer5  entity: 0
+A_output
+ttttttttttttttttttttý
+BASE_INDEX: 10
+NEXT_SEQ_NUM: 18
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 261.613678,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 14 
+
+EVENT time: 261.680389,  type: 2, fromlayer3  entity: 1
+B_input
+rrrrrrrrrrrrrrrrrrrr
+Corret 
+
+EVENT time: 261.790619,  type: 0, timerinterrupt   entity: 16
+16_timerinterrupt
+qqqqqqqqqqqqqqqqqqqq
+
+EVENT time: 261.790619,  type: 0, timerinterrupt   entity: 15
+15_timerinterrupt
+pppppppppppppppppppp
+
+EVENT time: 261.790619,  type: 0, timerinterrupt   entity: 11
+11_timerinterrupt
+llllllllllllllllllll
+
+EVENT time: 261.790619,  type: 0, timerinterrupt   entity: 10
+10_timerinterrupt
+kkkkkkkkkkkkkkkkkkkk
+          TOLAYER3: packet being corrupted
+
+EVENT time: 265.231384,  type: 2, fromlayer3  entity: 0
 A_input
 Corrupted ACK. Do Nothing. 
 
-EVENT time: 283.554352,  type: 2, fromlayer3  entity: 1
-B_input
-pppppppppppppppppppp
-Corret 
-
-EVENT time: 285.676636,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 15 
-
-EVENT time: 287.243591,  type: 1, fromlayer5  entity: 0
+EVENT time: 265.287994,  type: 1, fromlayer5  entity: 0
 A_output
-aaaaaaaaaaaaaaaaaaaaÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
+uuuuuuuuuuuuuuuuuuuuý
+BASE_INDEX: 10
+NEXT_SEQ_NUM: 18
 cannot send the data because there are more than 8 packets transmitting
 
-EVENT time: 290.577393,  type: 2, fromlayer3  entity: 1
+EVENT time: 267.353668,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 17 
+
+EVENT time: 271.508759,  type: 2, fromlayer3  entity: 1
 B_input
 qqqqqqqqqqqqqqqqqqqq
 Corret 
 
-EVENT time: 294.740295,  type: 2, fromlayer3  entity: 0
+EVENT time: 275.627075,  type: 2, fromlayer3  entity: 1
+B_input
+pppppppppppppppppppp
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 278.945404,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK 16 
 
-EVENT time: 297.393219,  type: 1, fromlayer5  entity: 0
-A_output
-bbbbbbbbbbbbbbbbbbbbÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 304.322815,  type: 1, fromlayer5  entity: 0
-A_output
-ccccccccccccccccccccÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 320.184082,  type: 1, fromlayer5  entity: 0
-A_output
-ddddddddddddddddddddÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 323.113434,  type: 1, fromlayer5  entity: 0
-A_output
-eeeeeeeeeeeeeeeeeeeeÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 324.740295,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-jjjjjjjjjjjjjjjjjjjj
-
-          TOLAYER3: packet being corrupted
-kkkkkkkkkkkkkkkkkkkk
-oooooooooooooooooooo
-
-EVENT time: 327.058838,  type: 2, fromlayer3  entity: 1
+EVENT time: 283.601440,  type: 2, fromlayer3  entity: 1
 B_input
-Zjjjjjjjjjjjjjjjjjjj
+llllllllllllllllllll
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 283.830963,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 283.916107,  type: 1, fromlayer5  entity: 0
+A_output
+vvvvvvvvvvvvvvvvvvvvý
+BASE_INDEX: 10
+NEXT_SEQ_NUM: 18
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 286.408569,  type: 2, fromlayer3  entity: 1
+B_input
+kkkkkkkkkkkkkkkkkkkk
 Corrupted
 
-EVENT time: 336.441467,  type: 2, fromlayer3  entity: 1
+EVENT time: 291.790619,  type: 0, timerinterrupt   entity: 10
+10_timerinterrupt
+kkkkkkkkkkkkkkkkkkkk
+
+EVENT time: 291.790619,  type: 0, timerinterrupt   entity: 11
+11_timerinterrupt
+llllllllllllllllllll
+
+EVENT time: 291.790619,  type: 0, timerinterrupt   entity: 15
+15_timerinterrupt
+pppppppppppppppppppp
+
+EVENT time: 293.486908,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 294.600769,  type: 2, fromlayer3  entity: 1
 B_input
 kkkkkkkkkkkkkkkkkkkk
 Expected Number: 10 
@@ -542,279 +562,697 @@ Layer 5:
 pppppppppppppppppppp
 Expected Number: 16 
 Layer 5:
-qqqqqqqqqqqqqqqqqqqq
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 338.081482,  type: 2, fromlayer3  entity: 0
-A_input
-Corrupted ACK. Do Nothing. 
-
-EVENT time: 338.612030,  type: 1, fromlayer5  entity: 0
-A_output
-ffffffffffffffffffffÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 340.623627,  type: 2, fromlayer3  entity: 1
-B_input
-oooooooooooooooooooo
-Corret 
-          TOLAYER3: packet being lost
-
-EVENT time: 354.740295,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-jjjjjjjjjjjjjjjjjjjj
-
-          TOLAYER3: packet being corrupted
-kkkkkkkkkkkkkkkkkkkk
-          TOLAYER3: packet being corrupted
-oooooooooooooooooooo
-
-EVENT time: 357.847443,  type: 1, fromlayer5  entity: 0
-A_output
-ggggggggggggggggggggÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 361.773071,  type: 2, fromlayer3  entity: 1
-B_input
-Zjjjjjjjjjjjjjjjjjjj
-Corrupted
-
-EVENT time: 370.204926,  type: 2, fromlayer3  entity: 1
-B_input
-Zkkkkkkkkkkkkkkkkkkk
-Corrupted
-
-EVENT time: 373.978729,  type: 1, fromlayer5  entity: 0
-A_output
-hhhhhhhhhhhhhhhhhhhhÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 378.561554,  type: 2, fromlayer3  entity: 1
-B_input
-oooooooooooooooooooo
-Corret 
-
-EVENT time: 381.023987,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 14 
-
-EVENT time: 384.967987,  type: 1, fromlayer5  entity: 0
-A_output
-iiiiiiiiiiiiiiiiiiiiÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 396.503021,  type: 1, fromlayer5  entity: 0
-A_output
-jjjjjjjjjjjjjjjjjjjjÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 400.388855,  type: 1, fromlayer5  entity: 0
-A_output
-kkkkkkkkkkkkkkkkkkkkÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 411.023987,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-jjjjjjjjjjjjjjjjjjjj
-
-          TOLAYER3: packet being corrupted
-kkkkkkkkkkkkkkkkkkkk
-
-EVENT time: 416.468323,  type: 1, fromlayer5  entity: 0
-A_output
-llllllllllllllllllllÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 419.848022,  type: 2, fromlayer3  entity: 1
-B_input
-jjjjjjjjjjjjjjjjjjjj
-Corrupted
-
-EVENT time: 425.908813,  type: 1, fromlayer5  entity: 0
-A_output
-mmmmmmmmmmmmmmmmmmmmÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 427.594635,  type: 1, fromlayer5  entity: 0
-A_output
-nnnnnnnnnnnnnnnnnnnnÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 428.294006,  type: 1, fromlayer5  entity: 0
-A_output
-ooooooooooooooooooooÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 429.112885,  type: 2, fromlayer3  entity: 1
-B_input
-kkkkkkkkkkkkkkkkkkkk
-Corret 
-          TOLAYER3: packet being lost
-
-EVENT time: 429.677002,  type: 1, fromlayer5  entity: 0
-A_output
-ppppppppppppppppppppÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 438.717285,  type: 1, fromlayer5  entity: 0
-A_output
-qqqqqqqqqqqqqqqqqqqqÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 441.023987,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-jjjjjjjjjjjjjjjjjjjj
-
-kkkkkkkkkkkkkkkkkkkk
-
-EVENT time: 442.140625,  type: 1, fromlayer5  entity: 0
-A_output
-rrrrrrrrrrrrrrrrrrrrÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 442.846313,  type: 2, fromlayer3  entity: 1
-B_input
-jjjjjjjjjjjjjjjjjjjj
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 446.695190,  type: 2, fromlayer3  entity: 0
-A_input
-Corrupted ACK. Do Nothing. 
-
-EVENT time: 449.309448,  type: 2, fromlayer3  entity: 1
-B_input
-kkkkkkkkkkkkkkkkkkkk
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 455.768768,  type: 1, fromlayer5  entity: 0
-A_output
-ssssssssssssssssssssÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 458.556519,  type: 2, fromlayer3  entity: 0
-A_input
-Corrupted ACK. Do Nothing. 
-
-EVENT time: 471.023987,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send all Reserved Packets
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-jjjjjjjjjjjjjjjjjjjj
-
-kkkkkkkkkkkkkkkkkkkk
-
-EVENT time: 472.502563,  type: 1, fromlayer5  entity: 0
-A_output
-ttttttttttttttttttttÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 477.287140,  type: 1, fromlayer5  entity: 0
-A_output
-uuuuuuuuuuuuuuuuuuuuÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 478.430573,  type: 2, fromlayer3  entity: 1
-B_input
-jjjjjjjjjjjjjjjjjjjj
-Corret 
-
-EVENT time: 482.694794,  type: 2, fromlayer3  entity: 1
-B_input
-kkkkkkkkkkkkkkkkkkkk
-Corret 
-
-EVENT time: 484.081970,  type: 1, fromlayer5  entity: 0
-A_output
-vvvvvvvvvvvvvvvvvvvvÿ
-BASE_INDEX: 9
-NEXT_SEQ_NUM: 17
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 486.896851,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 9 
-
-EVENT time: 494.129364,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK 10 
-
-EVENT time: 494.681366,  type: 1, fromlayer5  entity: 0
-A_output
-wwwwwwwwwwwwwwwwwwwwÿ
-          TOLAYER3: packet being lost
-BASE_INDEX: 17
-NEXT_SEQ_NUM: 25
-cannot send the data because there are more than 8 packets transmitting
-
-EVENT time: 502.494324,  type: 2, fromlayer3  entity: 1
-B_input
-rrrrrrrrrrrrrrrrrrrr
+qqqqqqqqqqqqqqqqqqqq
 Expected Number: 17 
 Layer 5:
 rrrrrrrrrrrrrrrrrrrr
 Corret 
-          TOLAYER3: packet being lost
 
-EVENT time: 504.361786,  type: 2, fromlayer3  entity: 1
+EVENT time: 297.322266,  type: 1, fromlayer5  entity: 0
+A_output
+wwwwwwwwwwwwwwwwwwwwý
+BASE_INDEX: 10
+NEXT_SEQ_NUM: 18
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 297.349609,  type: 2, fromlayer3  entity: 1
+B_input
+llllllllllllllllllll
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 300.545929,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 10 
+
+EVENT time: 300.572083,  type: 1, fromlayer5  entity: 0
+A_output
+xxxxxxxxxxxxxxxxxxxxý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 303.748871,  type: 1, fromlayer5  entity: 0
+A_output
+yyyyyyyyyyyyyyyyyyyyý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 305.706238,  type: 2, fromlayer3  entity: 1
+B_input
+pppppppppppppppppppp
+Corret 
+
+EVENT time: 306.736694,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 309.003448,  type: 2, fromlayer3  entity: 1
 B_input
 ssssssssssssssssssss
 Expected Number: 18 
 Layer 5:
 ssssssssssssssssssss
 Corret 
-          TOLAYER3: packet being corrupted
+          TOLAYER3: packet being lost
 
-EVENT time: 505.870667,  type: 1, fromlayer5  entity: 0
+EVENT time: 311.770935,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 15 
+
+EVENT time: 321.790619,  type: 0, timerinterrupt   entity: 11
+11_timerinterrupt
+llllllllllllllllllll
+          TOLAYER3: packet being lost
+
+EVENT time: 322.541748,  type: 1, fromlayer5  entity: 0
 A_output
-xxxxxxxxxxxxxxxxxxxxÿ
-BASE_INDEX: 17
-NEXT_SEQ_NUM: 25
+zzzzzzzzzzzzzzzzzzzzý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
 cannot send the data because there are more than 8 packets transmitting
 
-EVENT time: 509.740448,  type: 1, fromlayer5  entity: 0
+EVENT time: 323.924744,  type: 1, fromlayer5  entity: 0
+A_output
+aaaaaaaaaaaaaaaaaaaaý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 325.897522,  type: 1, fromlayer5  entity: 0
+A_output
+bbbbbbbbbbbbbbbbbbbbý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 330.572083,  type: 0, timerinterrupt   entity: 18
+18_timerinterrupt
+ssssssssssssssssssss
+          TOLAYER3: packet being corrupted
+
+EVENT time: 334.937805,  type: 1, fromlayer5  entity: 0
+A_output
+ccccccccccccccccccccý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 337.372101,  type: 2, fromlayer3  entity: 1
+B_input
+Zsssssssssssssssssss
+Corrupted
+
+EVENT time: 339.189575,  type: 1, fromlayer5  entity: 0
+A_output
+ddddddddddddddddddddý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 351.329895,  type: 1, fromlayer5  entity: 0
+A_output
+eeeeeeeeeeeeeeeeeeeeý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 351.790619,  type: 0, timerinterrupt   entity: 11
+11_timerinterrupt
+llllllllllllllllllll
+
+EVENT time: 354.908844,  type: 2, fromlayer3  entity: 1
+B_input
+llllllllllllllllllll
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 356.741486,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 360.572083,  type: 0, timerinterrupt   entity: 18
+18_timerinterrupt
+ssssssssssssssssssss
+          TOLAYER3: packet being lost
+
+EVENT time: 361.135681,  type: 1, fromlayer5  entity: 0
+A_output
+ffffffffffffffffffffý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 374.588715,  type: 1, fromlayer5  entity: 0
+A_output
+ggggggggggggggggggggý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 381.790619,  type: 0, timerinterrupt   entity: 11
+11_timerinterrupt
+llllllllllllllllllll
+
+EVENT time: 389.197205,  type: 2, fromlayer3  entity: 1
+B_input
+llllllllllllllllllll
+Corret 
+
+EVENT time: 390.572083,  type: 0, timerinterrupt   entity: 18
+18_timerinterrupt
+ssssssssssssssssssss
+
+EVENT time: 391.322510,  type: 1, fromlayer5  entity: 0
+A_output
+hhhhhhhhhhhhhhhhhhhhý
+BASE_INDEX: 11
+NEXT_SEQ_NUM: 19
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 393.461426,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 11 
+
+EVENT time: 394.629761,  type: 2, fromlayer3  entity: 1
+B_input
+ssssssssssssssssssss
+Corret 
+
+EVENT time: 399.263458,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 18 
+
+EVENT time: 407.914276,  type: 1, fromlayer5  entity: 0
+A_output
+iiiiiiiiiiiiiiiiiiiiý
+          TOLAYER3: packet being lost
+          TOLAYER3: packet being corrupted
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 413.949463,  type: 2, fromlayer3  entity: 1
+B_input
+tttttttttttttttttttt
+Expected Number: 19 
+Layer 5:
+tttttttttttttttttttt
+Corret 
+          TOLAYER3: packet being lost
+
+EVENT time: 416.372925,  type: 1, fromlayer5  entity: 0
+A_output
+jjjjjjjjjjjjjjjjjjjjý
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 417.452759,  type: 1, fromlayer5  entity: 0
+A_output
+kkkkkkkkkkkkkkkkkkkký
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 421.720184,  type: 2, fromlayer3  entity: 1
+B_input
+uuuuuuuuuuuuuuuuuuuu
+Expected Number: 20 
+Layer 5:
+uuuuuuuuuuuuuuuuuuuu
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 424.899872,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 427.680817,  type: 1, fromlayer5  entity: 0
+A_output
+llllllllllllllllllllý
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 428.025024,  type: 2, fromlayer3  entity: 1
+B_input
+wwwwwwwwwwwwwwwwwwww
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 429.866638,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 436.355560,  type: 2, fromlayer3  entity: 1
+B_input
+Zxxxxxxxxxxxxxxxxxxx
+Corrupted
+
+EVENT time: 437.914276,  type: 0, timerinterrupt   entity: 26
+26_timerinterrupt
+aaaaaaaaaaaaaaaaaaaa
+
+EVENT time: 437.914276,  type: 0, timerinterrupt   entity: 25
+25_timerinterrupt
+zzzzzzzzzzzzzzzzzzzz
+          TOLAYER3: packet being corrupted
+
+EVENT time: 437.914276,  type: 0, timerinterrupt   entity: 24
+24_timerinterrupt
+yyyyyyyyyyyyyyyyyyyy
+
+EVENT time: 437.914276,  type: 0, timerinterrupt   entity: 23
+23_timerinterrupt
+xxxxxxxxxxxxxxxxxxxx
+
+EVENT time: 437.914276,  type: 0, timerinterrupt   entity: 22
+22_timerinterrupt
+wwwwwwwwwwwwwwwwwwww
+
+EVENT time: 437.914276,  type: 0, timerinterrupt   entity: 21
+21_timerinterrupt
+vvvvvvvvvvvvvvvvvvvv
+
+EVENT time: 437.914276,  type: 0, timerinterrupt   entity: 20
+20_timerinterrupt
+uuuuuuuuuuuuuuuuuuuu
+
+EVENT time: 437.914276,  type: 0, timerinterrupt   entity: 19
+19_timerinterrupt
+tttttttttttttttttttt
+
+EVENT time: 439.941223,  type: 1, fromlayer5  entity: 0
+A_output
+mmmmmmmmmmmmmmmmmmmmý
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 440.553314,  type: 2, fromlayer3  entity: 1
+B_input
+yyyyyyyyyyyyyyyyyyyy
+Corret 
+
+EVENT time: 448.044830,  type: 2, fromlayer3  entity: 1
+B_input
+zzzzzzzzzzzzzzzzzzzz
+Corret 
+
+EVENT time: 449.901001,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 24 
+
+EVENT time: 454.669006,  type: 1, fromlayer5  entity: 0
+A_output
+nnnnnnnnnnnnnnnnnnnný
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 454.679810,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 25 
+
+EVENT time: 454.690826,  type: 2, fromlayer3  entity: 1
+B_input
+aaaaaaaaaaaaaaaaaaaa
+Corret 
+
+EVENT time: 457.444824,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 26 
+
+EVENT time: 463.435394,  type: 1, fromlayer5  entity: 0
+A_output
+ooooooooooooooooooooý
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 463.728668,  type: 2, fromlayer3  entity: 1
+B_input
+aaaaaaaaaaaaaaaaaaaa
+Corret 
+
+EVENT time: 467.914276,  type: 0, timerinterrupt   entity: 19
+19_timerinterrupt
+tttttttttttttttttttt
+
+EVENT time: 467.914276,  type: 0, timerinterrupt   entity: 20
+20_timerinterrupt
+uuuuuuuuuuuuuuuuuuuu
+
+EVENT time: 467.914276,  type: 0, timerinterrupt   entity: 21
+21_timerinterrupt
+vvvvvvvvvvvvvvvvvvvv
+
+EVENT time: 467.914276,  type: 0, timerinterrupt   entity: 22
+22_timerinterrupt
+wwwwwwwwwwwwwwwwwwww
+          TOLAYER3: packet being corrupted
+
+EVENT time: 467.914276,  type: 0, timerinterrupt   entity: 23
+23_timerinterrupt
+xxxxxxxxxxxxxxxxxxxx
+
+EVENT time: 468.643707,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 26 
+Warning: unable to cancel your timer. It wasn't running.
+
+EVENT time: 468.944885,  type: 2, fromlayer3  entity: 1
+B_input
+zzzzzzzzzzzzzzzzzzzz
+Corrupted
+
+EVENT time: 475.584198,  type: 2, fromlayer3  entity: 1
+B_input
+yyyyyyyyyyyyyyyyyyyy
+Corret 
+
+EVENT time: 478.471741,  type: 1, fromlayer5  entity: 0
+A_output
+ppppppppppppppppppppý
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 481.877319,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 24 
+Warning: unable to cancel your timer. It wasn't running.
+
+EVENT time: 483.157623,  type: 1, fromlayer5  entity: 0
+A_output
+qqqqqqqqqqqqqqqqqqqqý
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 483.617310,  type: 2, fromlayer3  entity: 1
+B_input
+xxxxxxxxxxxxxxxxxxxx
+Corret 
+
+EVENT time: 486.628326,  type: 2, fromlayer3  entity: 1
+B_input
+wwwwwwwwwwwwwwwwwwww
+Corret 
+
+EVENT time: 492.677368,  type: 2, fromlayer3  entity: 1
+B_input
+vvvvvvvvvvvvvvvvvvvv
+Expected Number: 21 
+Layer 5:
+vvvvvvvvvvvvvvvvvvvv
+Expected Number: 22 
+Layer 5:
+wwwwwwwwwwwwwwwwwwww
+Expected Number: 23 
+Layer 5:
+xxxxxxxxxxxxxxxxxxxx
+Expected Number: 24 
+Layer 5:
+yyyyyyyyyyyyyyyyyyyy
+Expected Number: 25 
+Layer 5:
+zzzzzzzzzzzzzzzzzzzz
+Expected Number: 26 
+Layer 5:
+aaaaaaaaaaaaaaaaaaaa
+Corret 
+          TOLAYER3: packet being lost
+
+EVENT time: 492.994476,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 23 
+
+EVENT time: 495.793793,  type: 2, fromlayer3  entity: 1
+B_input
+uuuuuuuuuuuuuuuuuuuu
+Corret 
+
+EVENT time: 497.834747,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 22 
+
+EVENT time: 497.914276,  type: 0, timerinterrupt   entity: 21
+21_timerinterrupt
+vvvvvvvvvvvvvvvvvvvv
+
+EVENT time: 497.914276,  type: 0, timerinterrupt   entity: 20
+20_timerinterrupt
+uuuuuuuuuuuuuuuuuuuu
+
+EVENT time: 497.914276,  type: 0, timerinterrupt   entity: 19
+19_timerinterrupt
+tttttttttttttttttttt
+          TOLAYER3: packet being corrupted
+
+EVENT time: 498.723145,  type: 1, fromlayer5  entity: 0
+A_output
+rrrrrrrrrrrrrrrrrrrrý
+BASE_INDEX: 19
+NEXT_SEQ_NUM: 27
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 502.195923,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 20 
+
+EVENT time: 504.323029,  type: 2, fromlayer3  entity: 1
+B_input
+tttttttttttttttttttt
+Corret 
+          TOLAYER3: packet being lost
+
+EVENT time: 508.267181,  type: 2, fromlayer3  entity: 1
+B_input
+tttttttttttttttttttt
+Corret 
+
+EVENT time: 510.182831,  type: 2, fromlayer3  entity: 1
+B_input
+uuuuuuuuuuuuuuuuuuuu
+Corret 
+
+EVENT time: 511.965118,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 19 
+
+EVENT time: 513.223083,  type: 2, fromlayer3  entity: 1
+B_input
+vvvvvvvvvvvvvvvvvvvv
+Corret 
+
+EVENT time: 515.444519,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 20 
+Warning: unable to cancel your timer. It wasn't running.
+
+EVENT time: 516.509583,  type: 1, fromlayer5  entity: 0
+A_output
+ssssssssssssssssssssý
+BASE_INDEX: 21
+NEXT_SEQ_NUM: 29
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 516.511414,  type: 2, fromlayer3  entity: 1
+B_input
+Zwwwwwwwwwwwwwwwwwww
+Corrupted
+
+EVENT time: 519.190002,  type: 2, fromlayer3  entity: 1
+B_input
+xxxxxxxxxxxxxxxxxxxx
+Corret 
+          TOLAYER3: packet being lost
+
+EVENT time: 523.930969,  type: 2, fromlayer3  entity: 1
+B_input
+vvvvvvvvvvvvvvvvvvvv
+Corret 
+
+EVENT time: 524.653931,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 21 
+
+EVENT time: 526.454956,  type: 2, fromlayer3  entity: 1
+B_input
+uuuuuuuuuuuuuuuuuuuu
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 528.019958,  type: 2, fromlayer3  entity: 1
+B_input
+Zttttttttttttttttttt
+Corrupted
+
+EVENT time: 528.693665,  type: 1, fromlayer5  entity: 0
+A_output
+ttttttttttttttttttttý
+          TOLAYER3: packet being corrupted
+          TOLAYER3: packet being lost
+BASE_INDEX: 27
+NEXT_SEQ_NUM: 35
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 529.217224,  type: 2, fromlayer3  entity: 1
+B_input
+bbbbbbbbbbbbbbbbbbbb
+Expected Number: 27 
+Layer 5:
+bbbbbbbbbbbbbbbbbbbb
+Corret 
+          TOLAYER3: packet being lost
+
+EVENT time: 531.279480,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 21 
+Warning: unable to cancel your timer. It wasn't running.
+
+EVENT time: 533.148621,  type: 2, fromlayer3  entity: 1
+B_input
+cccccccccccccccccccc
+Expected Number: 28 
+Layer 5:
+cccccccccccccccccccc
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 533.500000,  type: 1, fromlayer5  entity: 0
+A_output
+uuuuuuuuuuuuuuuuuuuuý
+BASE_INDEX: 27
+NEXT_SEQ_NUM: 35
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 539.980652,  type: 2, fromlayer3  entity: 1
+B_input
+dddddddddddddddddddd
+Expected Number: 29 
+Layer 5:
+dddddddddddddddddddd
+Corret 
+
+EVENT time: 540.106262,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 545.842163,  type: 2, fromlayer3  entity: 1
+B_input
+eeeeeeeeeeeeeeeeeeee
+Expected Number: 30 
+Layer 5:
+eeeeeeeeeeeeeeeeeeee
+Corret 
+
+EVENT time: 546.509583,  type: 0, timerinterrupt   entity: 28
+28_timerinterrupt
+cccccccccccccccccccc
+
+EVENT time: 546.509583,  type: 0, timerinterrupt   entity: 27
+27_timerinterrupt
+bbbbbbbbbbbbbbbbbbbb
+
+EVENT time: 548.305481,  type: 1, fromlayer5  entity: 0
+A_output
+vvvvvvvvvvvvvvvvvvvvý
+BASE_INDEX: 27
+NEXT_SEQ_NUM: 35
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 549.488770,  type: 2, fromlayer3  entity: 0
+A_input
+Corrupted ACK. Do Nothing. 
+
+EVENT time: 555.425842,  type: 2, fromlayer3  entity: 1
+B_input
+ffffffffffffffffffff
+Corrupted
+
+EVENT time: 558.460632,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 29 
+
+EVENT time: 558.693665,  type: 0, timerinterrupt   entity: 34
+34_timerinterrupt
+iiiiiiiiiiiiiiiiiiii#
+
+EVENT time: 558.693665,  type: 0, timerinterrupt   entity: 33
+33_timerinterrupt
+hhhhhhhhhhhhhhhhhhhh"
+
+EVENT time: 558.693665,  type: 0, timerinterrupt   entity: 32
+32_timerinterrupt
+gggggggggggggggggggg!
+
+EVENT time: 558.693665,  type: 0, timerinterrupt   entity: 31
+31_timerinterrupt
+ffffffffffffffffffff 
+
+EVENT time: 558.693665,  type: 0, timerinterrupt   entity: 30
+30_timerinterrupt
+eeeeeeeeeeeeeeeeeeee
+
+EVENT time: 562.903564,  type: 2, fromlayer3  entity: 1
+B_input
+hhhhhhhhhhhhhhhhhhhh
+Corret 
+          TOLAYER3: packet being lost
+
+EVENT time: 565.723938,  type: 1, fromlayer5  entity: 0
+A_output
+wwwwwwwwwwwwwwwwwwwwý
+BASE_INDEX: 27
+NEXT_SEQ_NUM: 35
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 567.774963,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 30 
+
+EVENT time: 570.332947,  type: 2, fromlayer3  entity: 1
+B_input
+iiiiiiiiiiiiiiiiiiii
+Corret 
+
+EVENT time: 571.956726,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 34 
+
+EVENT time: 572.835632,  type: 2, fromlayer3  entity: 1
+B_input
+cccccccccccccccccccc
+Corret 
+
+EVENT time: 576.509583,  type: 0, timerinterrupt   entity: 27
+27_timerinterrupt
+bbbbbbbbbbbbbbbbbbbb
+
+EVENT time: 576.509583,  type: 0, timerinterrupt   entity: 28
+28_timerinterrupt
+cccccccccccccccccccc
+
+EVENT time: 578.469971,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK 28 
+
+EVENT time: 581.421997,  type: 2, fromlayer3  entity: 1
+B_input
+bbbbbbbbbbbbbbbbbbbb
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 583.191101,  type: 1, fromlayer5  entity: 0
+A_output
+xxxxxxxxxxxxxxxxxxxxý
+BASE_INDEX: 27
+NEXT_SEQ_NUM: 35
+cannot send the data because there are more than 8 packets transmitting
+
+EVENT time: 585.353882,  type: 2, fromlayer3  entity: 0
 All Done with Simulation

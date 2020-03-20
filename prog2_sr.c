@@ -53,10 +53,8 @@ int A_output(struct msg message)
 		}
 		// Set Timer
 		// Send to B using layer 3
-		if(BASE_INDEX == NEXT_SEQ_NUM)
-		{
-			starttimer(A, TIME_TO_INTERRUPT);
-		}
+		starttimer(NEXT_SEQ_NUM, TIME_TO_INTERRUPT);
+		
 		tolayer3(A, RESERVED_PACKET[NEXT_SEQ_NUM]);
 		NEXT_SEQ_NUM = (NEXT_SEQ_NUM + 1) % BUFFER_SIZE;
 	}
@@ -83,6 +81,9 @@ int A_input(struct pkt packet)
 	isAcked[packet.acknum] = 1;
 	int index = packet.acknum;
 	
+	// Set timer
+	stoptimer(packet.acknum);
+	
 	// Move the BASE_INDEX to next non acked position
 	if(index == BASE_INDEX)
 	{
@@ -99,35 +100,19 @@ int A_input(struct pkt packet)
 	{	
 		BASE_INDEX = (packet.acknum + 1) % BUFFER_SIZE;
 	}
-	
-	if(BASE_INDEX == NEXT_SEQ_NUM)
-	{
-		stoptimer(A);
-	}else
-	{
-		stoptimer(A);
-		starttimer(A, TIME_TO_INTERRUPT);
-	}
 	return 0;
 }
 
 /* called when A's timer goes off */
-int A_timerinterrupt() {
+int A_timerinterrupt(int seq) {
 	// Resend all the packets in the windows (Go Back N implementation)
 	// Need to change to Selective Repeated
-	printf("A_timerinterrupt\n");
-	printf("Send all Reserved Packets\n");
-	starttimer(A, TIME_TO_INTERRUPT);
-	printf("BASE_INDEX: %d\n", BASE_INDEX);
-	printf("NEXT_SEQ_NUM: %d\n", NEXT_SEQ_NUM);
-	
-	for(int i = BASE_INDEX; i < BASE_INDEX + WINDOW_SIZE; i++)
+	printf("%d_timerinterrupt\n", seq);
+	starttimer(seq, TIME_TO_INTERRUPT);
+	if (!isAcked[seq])
 	{
-		if(i <= NEXT_SEQ_NUM && isAcked[i] == 0)
-		{
-			printf("%s\n", RESERVED_PACKET[i % BUFFER_SIZE].payload);
-			tolayer3(A, RESERVED_PACKET[i % BUFFER_SIZE]);
-		}
+		printf("%s\n", RESERVED_PACKET[seq % BUFFER_SIZE].payload);
+		tolayer3(A, RESERVED_PACKET[seq % BUFFER_SIZE]);
 	}
 	return 0;
 }
@@ -276,11 +261,7 @@ int main()
       }
       free(eventptr->pktptr); /* free the memory for packet */
     } else if (eventptr->evtype == TIMER_INTERRUPT) {
-      if (eventptr->eventity == A) {
-        A_timerinterrupt();
-      } else {
-        B_timerinterrupt();
-      }
+      A_timerinterrupt(eventptr->eventity);
     } else {
       printf("INTERNAL PANIC: unknown event type \n");
     }
@@ -427,7 +408,7 @@ void printevlist()
 /********************** Student-callable ROUTINES ***********************/
 
 /* called by students routine to cancel a previously-started timer */
-void stoptimer(int AorB)
+void stoptimer(int seq)
 {
   struct event * q;
 
@@ -436,7 +417,7 @@ void stoptimer(int AorB)
   }
 
   for (q = evlist; q != NULL; q = q->next) {
-    if ((q->evtype == TIMER_INTERRUPT && q->eventity == AorB)) {
+    if ((q->evtype == TIMER_INTERRUPT && q->eventity == seq)) {
       /* remove this event */
       if (NULL == q->next && NULL == q->prev) {
         evlist = NULL;              /* remove first and only event on list */
@@ -456,7 +437,7 @@ void stoptimer(int AorB)
   printf("Warning: unable to cancel your timer. It wasn't running.\n");
 }
 
-void starttimer(int AorB, float increment)
+void starttimer(int seq, float increment)
 {
   struct event * q;
   struct event * evptr;
@@ -467,7 +448,7 @@ void starttimer(int AorB, float increment)
 
   /* be nice: check to see if timer is already started, if so, then  warn */
   for (q = evlist; q != NULL; q = q->next) {
-    if ((q->evtype == TIMER_INTERRUPT && q->eventity == AorB)) {
+    if ((q->evtype == TIMER_INTERRUPT && q->eventity == seq)) {
       printf("Warning: attempt to start a timer that is already started\n");
       return;
     }
@@ -477,7 +458,7 @@ void starttimer(int AorB, float increment)
   evptr = (struct event *)malloc(sizeof(struct event));
   evptr->evtime = time + increment;
   evptr->evtype = TIMER_INTERRUPT;
-  evptr->eventity = AorB;
+  evptr->eventity = seq;
   insertevent(evptr);
 }
 
