@@ -5,7 +5,7 @@
 int CUR_SEQ_NUM;
 int EXPECTED_SEQ_NUM;
 int CAN_SEND;
-float TIME_TO_INTERRUPT = 100.0;
+float TIME_TO_INTERRUPT = 30.0;
 struct pkt RESERVED_PACKET;
 
 /* called from layer 5, passed the data to be sent to other side */
@@ -16,7 +16,7 @@ int A_output(struct msg message)
 	printf("A_output\n");
 	if(CAN_SEND == 0)
 	{
-		printf("still have other packets transiting.");
+		printf("still have other packets transiting.\n");
 		return 0;
 	}
 	(void)message;
@@ -62,6 +62,7 @@ int A_input(struct pkt packet)
 		// Do not have to resent, just add CUR_SEQ_NUM
 		printf("Receive ACK\n");
 		CUR_SEQ_NUM = ((CUR_SEQ_NUM + 1) % 2);
+		CAN_SEND = 1;
 		stoptimer(A);
 	}else
 	{
@@ -105,17 +106,23 @@ int B_input(struct pkt packet)
 	// Check whether the message is corrupted
 	int checkSum = calcuateCheckSum(packet);
 	// Send ACK or NACK
+	printf("EXPECTED_SEQ_NUM: %d\n", EXPECTED_SEQ_NUM);
+	printf("Received Packet Seq: %d\n", packet.seqnum);
 	if(checkSum == packet.checksum){
 		// Send ACK
-		packetToA.acknum = CUR_SEQ_NUM;
-		CAN_SEND = 1;
+		packetToA.acknum = packet.seqnum;
+		
 		// send message to layer 5
-		if(EXPECTED_SEQ_NUM == CUR_SEQ_NUM)
-		{
+		if(packet.seqnum == EXPECTED_SEQ_NUM){
 			tolayer5(B, packet.payload);
 			EXPECTED_SEQ_NUM = (EXPECTED_SEQ_NUM + 1) % 2;
+			printf("Corret \n");
+		}else
+		{
+			// Resend ACK
+			printf("Sequence Number Not Matched. Resend ACK \n");
 		}
-		printf("Corret \n");
+		
 	}else{
 		// Send NACK
 		packetToA.acknum = ((CUR_SEQ_NUM + 1) % 2);

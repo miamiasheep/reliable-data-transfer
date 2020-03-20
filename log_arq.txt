@@ -3,30 +3,34 @@ B_init
 
 EVENT time: 1962.025146,  type: 1, fromlayer5  entity: 0
 A_output
-aaaaaaaaaaaaaaaaaaaaü          TOLAYER3: packet being lost
+aaaaaaaaaaaaaaaaaaaaþ          TOLAYER3: packet being lost
 
-EVENT time: 2062.025146,  type: 0, timerinterrupt   entity: 0
+EVENT time: 1992.025146,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
 
-EVENT time: 2064.146729,  type: 2, fromlayer3  entity: 1
+EVENT time: 1994.146606,  type: 2, fromlayer3  entity: 1
 B_input
 aaaaaaaaaaaaaaaaaaaa
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
 aaaaaaaaaaaaaaaaaaaa
 Corret 
 
-EVENT time: 2070.918457,  type: 2, fromlayer3  entity: 0
+EVENT time: 2000.918335,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
 EVENT time: 3435.513672,  type: 1, fromlayer5  entity: 0
 A_output
-bbbbbbbbbbbbbbbbbbbbü          TOLAYER3: packet being corrupted
+bbbbbbbbbbbbbbbbbbbbþ          TOLAYER3: packet being corrupted
 
 EVENT time: 3439.552490,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 999999
 Corrupted 
 
 EVENT time: 3445.220459,  type: 2, fromlayer3  entity: 0
@@ -37,6 +41,8 @@ Recieve NACK. Resend the packet.
 EVENT time: 3453.508789,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Corrupted 
 
 EVENT time: 3461.914062,  type: 2, fromlayer3  entity: 0
@@ -46,6 +52,8 @@ Recieve NACK. Resend the packet.
 EVENT time: 3463.789307,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
 bbbbbbbbbbbbbbbbbbbb
 Corret 
@@ -58,7 +66,9 @@ Resent packet due to corrupted ACK
 EVENT time: 3476.963135,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
-Corret 
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
           TOLAYER3: packet being corrupted
 
 EVENT time: 3485.545166,  type: 2, fromlayer3  entity: 0
@@ -69,6 +79,8 @@ Resent packet due to corrupted ACK
 EVENT time: 3491.439697,  type: 2, fromlayer3  entity: 1
 B_input
 Zbbbbbbbbbbbbbbbbbbb
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
 Corrupted 
           TOLAYER3: packet being corrupted
 
@@ -79,74 +91,88 @@ Resent packet due to corrupted ACK
 EVENT time: 3497.966309,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
-Corret 
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
           TOLAYER3: packet being lost
 
-EVENT time: 3595.551270,  type: 0, timerinterrupt   entity: 0
+EVENT time: 3525.551270,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
           TOLAYER3: packet being lost
 
-EVENT time: 3695.551270,  type: 0, timerinterrupt   entity: 0
+EVENT time: 3555.551270,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
 
-EVENT time: 3700.678955,  type: 2, fromlayer3  entity: 1
+EVENT time: 3560.678955,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
-Corret 
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
           TOLAYER3: packet being corrupted
 
-EVENT time: 3705.404541,  type: 2, fromlayer3  entity: 0
+EVENT time: 3565.404541,  type: 2, fromlayer3  entity: 0
 A_input
 Resent packet due to corrupted ACK
           TOLAYER3: packet being corrupted
 
-EVENT time: 3711.846680,  type: 2, fromlayer3  entity: 1
+EVENT time: 3571.846680,  type: 2, fromlayer3  entity: 1
 B_input
 Zbbbbbbbbbbbbbbbbbbb
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
 Corrupted 
 
-EVENT time: 3716.796387,  type: 2, fromlayer3  entity: 0
+EVENT time: 3576.796387,  type: 2, fromlayer3  entity: 0
 A_input
 Recieve NACK. Resend the packet.
           TOLAYER3: packet being corrupted
 
-EVENT time: 3723.614258,  type: 2, fromlayer3  entity: 1
+EVENT time: 3583.614258,  type: 2, fromlayer3  entity: 1
 B_input
 Zbbbbbbbbbbbbbbbbbbb
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
 Corrupted 
           TOLAYER3: packet being corrupted
 
-EVENT time: 3731.326904,  type: 2, fromlayer3  entity: 0
+EVENT time: 3591.326904,  type: 2, fromlayer3  entity: 0
 A_input
 Resent packet due to corrupted ACK
 
-EVENT time: 3737.046875,  type: 2, fromlayer3  entity: 1
+EVENT time: 3597.046875,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
-Corret 
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
           TOLAYER3: packet being corrupted
 
-EVENT time: 3740.469971,  type: 2, fromlayer3  entity: 0
+EVENT time: 3600.469971,  type: 2, fromlayer3  entity: 0
 A_input
 Resent packet due to corrupted ACK
 
-EVENT time: 3749.485596,  type: 2, fromlayer3  entity: 1
+EVENT time: 3609.485596,  type: 2, fromlayer3  entity: 1
 B_input
 bbbbbbbbbbbbbbbbbbbb
-Corret 
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
 
-EVENT time: 3752.900635,  type: 2, fromlayer3  entity: 0
+EVENT time: 3612.900635,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
 EVENT time: 4105.804688,  type: 1, fromlayer5  entity: 0
 A_output
-ccccccccccccccccccccü
+ccccccccccccccccccccþ
 EVENT time: 4110.540039,  type: 2, fromlayer3  entity: 1
 B_input
 cccccccccccccccccccc
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
 cccccccccccccccccccc
 Corret 
@@ -157,10 +183,12 @@ Receive ACK
 
 EVENT time: 4834.492188,  type: 1, fromlayer5  entity: 0
 A_output
-ddddddddddddddddddddü
+ddddddddddddddddddddþ
 EVENT time: 4838.564453,  type: 2, fromlayer3  entity: 1
 B_input
 dddddddddddddddddddd
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
 dddddddddddddddddddd
 Corret 
@@ -171,11 +199,13 @@ Receive ACK
 
 EVENT time: 6101.054199,  type: 1, fromlayer5  entity: 0
 A_output
-eeeeeeeeeeeeeeeeeeeeü          TOLAYER3: packet being corrupted
+eeeeeeeeeeeeeeeeeeeeþ          TOLAYER3: packet being corrupted
 
 EVENT time: 6110.586426,  type: 2, fromlayer3  entity: 1
 B_input
 eeeeeeeeeeeeeeeeeeee
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 999999
 Corrupted 
 
 EVENT time: 6120.034668,  type: 2, fromlayer3  entity: 0
@@ -186,6 +216,8 @@ Recieve NACK. Resend the packet.
 EVENT time: 6124.212402,  type: 2, fromlayer3  entity: 1
 B_input
 Zeeeeeeeeeeeeeeeeeee
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Corrupted 
           TOLAYER3: packet being corrupted
 
@@ -196,6 +228,8 @@ Resent packet due to corrupted ACK
 EVENT time: 6135.890625,  type: 2, fromlayer3  entity: 1
 B_input
 eeeeeeeeeeeeeeeeeeee
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
 eeeeeeeeeeeeeeeeeeee
 Corret 
@@ -208,39 +242,45 @@ Resent packet due to corrupted ACK
 EVENT time: 6145.582520,  type: 2, fromlayer3  entity: 1
 B_input
 eeeeeeeeeeeeeeeeeeee
-Corret 
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
+Sequence Number Not Matched. Resend ACK 
           TOLAYER3: packet being lost
 
-EVENT time: 6238.189941,  type: 0, timerinterrupt   entity: 0
+EVENT time: 6168.189941,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
           TOLAYER3: packet being lost
 
-EVENT time: 6338.189941,  type: 0, timerinterrupt   entity: 0
+EVENT time: 6198.189941,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
           TOLAYER3: packet being lost
 
-EVENT time: 6438.189941,  type: 0, timerinterrupt   entity: 0
+EVENT time: 6228.189941,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
 
-EVENT time: 6444.861816,  type: 2, fromlayer3  entity: 1
+EVENT time: 6234.861816,  type: 2, fromlayer3  entity: 1
 B_input
 eeeeeeeeeeeeeeeeeeee
-Corret 
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
+Sequence Number Not Matched. Resend ACK 
 
-EVENT time: 6453.041504,  type: 2, fromlayer3  entity: 0
+EVENT time: 6243.041504,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
 EVENT time: 7981.484863,  type: 1, fromlayer5  entity: 0
 A_output
-ffffffffffffffffffffü          TOLAYER3: packet being corrupted
+ffffffffffffffffffffþ          TOLAYER3: packet being corrupted
 
 EVENT time: 7990.819824,  type: 2, fromlayer3  entity: 1
 B_input
 Zfffffffffffffffffff
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Corrupted 
 
 EVENT time: 7998.263672,  type: 2, fromlayer3  entity: 0
@@ -250,6 +290,8 @@ Recieve NACK. Resend the packet.
 EVENT time: 8002.211426,  type: 2, fromlayer3  entity: 1
 B_input
 ffffffffffffffffffff
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
 ffffffffffffffffffff
 Corret 
@@ -260,10 +302,12 @@ Receive ACK
 
 EVENT time: 9894.384766,  type: 1, fromlayer5  entity: 0
 A_output
-ggggggggggggggggggggü
+ggggggggggggggggggggþ
 EVENT time: 9903.809570,  type: 2, fromlayer3  entity: 1
 B_input
 gggggggggggggggggggg
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
 gggggggggggggggggggg
 Corret 
@@ -276,7 +320,9 @@ Resent packet due to corrupted ACK
 EVENT time: 9915.755859,  type: 2, fromlayer3  entity: 1
 B_input
 gggggggggggggggggggg
-Corret 
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
+Sequence Number Not Matched. Resend ACK 
 
 EVENT time: 9917.178711,  type: 2, fromlayer3  entity: 0
 A_input
@@ -284,10 +330,12 @@ Receive ACK
 
 EVENT time: 10774.282227,  type: 1, fromlayer5  entity: 0
 A_output
-hhhhhhhhhhhhhhhhhhhhü
+hhhhhhhhhhhhhhhhhhhhþ
 EVENT time: 10782.724609,  type: 2, fromlayer3  entity: 1
 B_input
 hhhhhhhhhhhhhhhhhhhh
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
 hhhhhhhhhhhhhhhhhhhh
 Corret 
@@ -298,11 +346,13 @@ Receive ACK
 
 EVENT time: 11006.841797,  type: 1, fromlayer5  entity: 0
 A_output
-iiiiiiiiiiiiiiiiiiiiü          TOLAYER3: packet being corrupted
+iiiiiiiiiiiiiiiiiiiiþ          TOLAYER3: packet being corrupted
 
 EVENT time: 11013.452148,  type: 2, fromlayer3  entity: 1
 B_input
 Ziiiiiiiiiiiiiiiiiii
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Corrupted 
 
 EVENT time: 11020.708984,  type: 2, fromlayer3  entity: 0
@@ -312,6 +362,8 @@ Recieve NACK. Resend the packet.
 EVENT time: 11024.732422,  type: 2, fromlayer3  entity: 1
 B_input
 iiiiiiiiiiiiiiiiiiii
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
 iiiiiiiiiiiiiiiiiiii
 Corret 
@@ -325,6 +377,8 @@ Resent packet due to corrupted ACK
 EVENT time: 11031.866211,  type: 2, fromlayer3  entity: 1
 B_input
 iiiiiiiiiiiiiiiiiiii
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
 Corrupted 
 
 EVENT time: 11041.583984,  type: 2, fromlayer3  entity: 0
@@ -334,7 +388,9 @@ Recieve NACK. Resend the packet.
 EVENT time: 11045.702148,  type: 2, fromlayer3  entity: 1
 B_input
 iiiiiiiiiiiiiiiiiiii
-Corret 
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
+Sequence Number Not Matched. Resend ACK 
 
 EVENT time: 11053.676758,  type: 2, fromlayer3  entity: 0
 A_input
@@ -342,10 +398,12 @@ Receive ACK
 
 EVENT time: 12345.296875,  type: 1, fromlayer5  entity: 0
 A_output
-jjjjjjjjjjjjjjjjjjjjü
+jjjjjjjjjjjjjjjjjjjjþ
 EVENT time: 12347.497070,  type: 2, fromlayer3  entity: 1
 B_input
 jjjjjjjjjjjjjjjjjjjj
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
 jjjjjjjjjjjjjjjjjjjj
 Corret 
@@ -356,11 +414,13 @@ Receive ACK
 
 EVENT time: 12638.303711,  type: 1, fromlayer5  entity: 0
 A_output
-kkkkkkkkkkkkkkkkkkkkü          TOLAYER3: packet being corrupted
+kkkkkkkkkkkkkkkkkkkkþ          TOLAYER3: packet being corrupted
 
 EVENT time: 12643.189453,  type: 2, fromlayer3  entity: 1
 B_input
 Zkkkkkkkkkkkkkkkkkkk
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Corrupted 
           TOLAYER3: packet being corrupted
 
@@ -372,6 +432,8 @@ Resent packet due to corrupted ACK
 EVENT time: 12655.874023,  type: 2, fromlayer3  entity: 1
 B_input
 kkkkkkkkkkkkkkkkkkkk
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 999999
 Corrupted 
 
 EVENT time: 12658.623047,  type: 2, fromlayer3  entity: 0
@@ -381,6 +443,8 @@ Recieve NACK. Resend the packet.
 EVENT time: 12666.979492,  type: 2, fromlayer3  entity: 1
 B_input
 kkkkkkkkkkkkkkkkkkkk
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
 kkkkkkkkkkkkkkkkkkkk
 Corret 
@@ -391,11 +455,13 @@ Receive ACK
 
 EVENT time: 13345.452148,  type: 1, fromlayer5  entity: 0
 A_output
-llllllllllllllllllllü          TOLAYER3: packet being corrupted
+llllllllllllllllllllþ          TOLAYER3: packet being corrupted
 
 EVENT time: 13351.642578,  type: 2, fromlayer3  entity: 1
 B_input
 llllllllllllllllllll
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 999999
 Corrupted 
           TOLAYER3: packet being corrupted
 
@@ -406,6 +472,8 @@ Resent packet due to corrupted ACK
 EVENT time: 13369.731445,  type: 2, fromlayer3  entity: 1
 B_input
 llllllllllllllllllll
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
 llllllllllllllllllll
 Corret 
@@ -416,432 +484,511 @@ A_input
 Resent packet due to corrupted ACK
           TOLAYER3: packet being lost
 
-EVENT time: 13471.490234,  type: 0, timerinterrupt   entity: 0
+EVENT time: 13401.490234,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
 
-EVENT time: 13474.030273,  type: 2, fromlayer3  entity: 1
+EVENT time: 13404.030273,  type: 2, fromlayer3  entity: 1
 B_input
 llllllllllllllllllll
-Corret 
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
           TOLAYER3: packet being lost
 
-EVENT time: 13571.490234,  type: 0, timerinterrupt   entity: 0
+EVENT time: 13431.490234,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
 
-EVENT time: 13574.403320,  type: 2, fromlayer3  entity: 1
+EVENT time: 13434.403320,  type: 2, fromlayer3  entity: 1
 B_input
 llllllllllllllllllll
-Corret 
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
           TOLAYER3: packet being corrupted
 
-EVENT time: 13581.536133,  type: 2, fromlayer3  entity: 0
+EVENT time: 13441.536133,  type: 2, fromlayer3  entity: 0
 A_input
 Resent packet due to corrupted ACK
           TOLAYER3: packet being corrupted
 
-EVENT time: 13583.369141,  type: 2, fromlayer3  entity: 1
+EVENT time: 13443.369141,  type: 2, fromlayer3  entity: 1
 B_input
 llllllllllllllllllll
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
 Corrupted 
           TOLAYER3: packet being lost
+
+EVENT time: 13471.536133,  type: 0, timerinterrupt   entity: 0
+A_timerinterrupt
+Send Reserved Packet
+
+EVENT time: 13480.066406,  type: 2, fromlayer3  entity: 1
+B_input
+llllllllllllllllllll
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
+
+EVENT time: 13486.941406,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
 
 EVENT time: 13670.433594,  type: 1, fromlayer5  entity: 0
 A_output
-mmmmmmmmmmmmmmmmmmmmüWarning: attempt to start a timer that is already started
-
-EVENT time: 13676.295898,  type: 2, fromlayer3  entity: 1
+mmmmmmmmmmmmmmmmmmmmþ
+EVENT time: 13673.586914,  type: 2, fromlayer3  entity: 1
 B_input
+mmmmmmmmmmmmmmmmmmmm
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
+Layer 5:
 mmmmmmmmmmmmmmmmmmmm
 Corret 
 
-EVENT time: 13681.174805,  type: 2, fromlayer3  entity: 0
+EVENT time: 13682.052734,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
-EVENT time: 15015.737305,  type: 1, fromlayer5  entity: 0
+EVENT time: 14395.814453,  type: 1, fromlayer5  entity: 0
 A_output
-nnnnnnnnnnnnnnnnnnnnü
-EVENT time: 15019.794922,  type: 2, fromlayer3  entity: 1
+nnnnnnnnnnnnnnnnnnnnþ
+EVENT time: 14400.621094,  type: 2, fromlayer3  entity: 1
 B_input
 nnnnnnnnnnnnnnnnnnnn
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
 nnnnnnnnnnnnnnnnnnnn
 Corret 
 
-EVENT time: 15028.568359,  type: 2, fromlayer3  entity: 0
+EVENT time: 14410.598633,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
-EVENT time: 16096.849609,  type: 1, fromlayer5  entity: 0
+EVENT time: 15203.305664,  type: 1, fromlayer5  entity: 0
 A_output
-ooooooooooooooooooooü
-EVENT time: 16102.619141,  type: 2, fromlayer3  entity: 1
+ooooooooooooooooooooþ
+EVENT time: 15205.172852,  type: 2, fromlayer3  entity: 1
 B_input
 oooooooooooooooooooo
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
 oooooooooooooooooooo
 Corret 
 
-EVENT time: 16110.431641,  type: 2, fromlayer3  entity: 0
+EVENT time: 15211.358398,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
-EVENT time: 17481.855469,  type: 1, fromlayer5  entity: 0
+EVENT time: 16707.910156,  type: 1, fromlayer5  entity: 0
 A_output
-ppppppppppppppppppppü          TOLAYER3: packet being lost
+ppppppppppppppppppppþ          TOLAYER3: packet being corrupted
 
-EVENT time: 17581.855469,  type: 0, timerinterrupt   entity: 0
-A_timerinterrupt
-Send Reserved Packet
-
-EVENT time: 17588.160156,  type: 2, fromlayer3  entity: 1
+EVENT time: 16713.363281,  type: 2, fromlayer3  entity: 1
 B_input
-pppppppppppppppppppp
-Layer 5:
-pppppppppppppppppppp
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 17596.490234,  type: 2, fromlayer3  entity: 0
-A_input
-Resent packet due to corrupted ACK
-
-EVENT time: 17600.687500,  type: 2, fromlayer3  entity: 1
-B_input
-pppppppppppppppppppp
-Corret 
-
-EVENT time: 17608.179688,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 19237.765625,  type: 1, fromlayer5  entity: 0
-A_output
-qqqqqqqqqqqqqqqqqqqqü          TOLAYER3: packet being corrupted
-
-EVENT time: 19243.054688,  type: 2, fromlayer3  entity: 1
-B_input
-Zqqqqqqqqqqqqqqqqqqq
-Corrupted 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 19252.886719,  type: 2, fromlayer3  entity: 0
-A_input
-Resent packet due to corrupted ACK
-          TOLAYER3: packet being corrupted
-
-EVENT time: 19259.404297,  type: 2, fromlayer3  entity: 1
-B_input
-Zqqqqqqqqqqqqqqqqqqq
+Zppppppppppppppppppp
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Corrupted 
 
-EVENT time: 19260.533203,  type: 2, fromlayer3  entity: 0
-A_input
-Recieve NACK. Resend the packet.
-          TOLAYER3: packet being corrupted
-
-EVENT time: 19265.765625,  type: 2, fromlayer3  entity: 1
-B_input
-Zqqqqqqqqqqqqqqqqqqq
-Corrupted 
-
-EVENT time: 19275.115234,  type: 2, fromlayer3  entity: 0
+EVENT time: 16719.275391,  type: 2, fromlayer3  entity: 0
 A_input
 Recieve NACK. Resend the packet.
 
-EVENT time: 19282.632812,  type: 2, fromlayer3  entity: 1
+EVENT time: 16728.097656,  type: 2, fromlayer3  entity: 1
 B_input
-qqqqqqqqqqqqqqqqqqqq
+pppppppppppppppppppp
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
-qqqqqqqqqqqqqqqqqqqq
-Corret 
-
-EVENT time: 19291.587891,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 20975.933594,  type: 1, fromlayer5  entity: 0
-A_output
-rrrrrrrrrrrrrrrrrrrrü
-EVENT time: 20980.494141,  type: 2, fromlayer3  entity: 1
-B_input
-rrrrrrrrrrrrrrrrrrrr
-Layer 5:
-rrrrrrrrrrrrrrrrrrrr
+pppppppppppppppppppp
 Corret 
           TOLAYER3: packet being corrupted
 
-EVENT time: 20984.378906,  type: 2, fromlayer3  entity: 0
+EVENT time: 16729.585938,  type: 2, fromlayer3  entity: 0
 A_input
 Resent packet due to corrupted ACK
-
-EVENT time: 20992.908203,  type: 2, fromlayer3  entity: 1
-B_input
-rrrrrrrrrrrrrrrrrrrr
-Corret 
-
-EVENT time: 21000.541016,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 21422.824219,  type: 1, fromlayer5  entity: 0
-A_output
-ssssssssssssssssssssü
-EVENT time: 21427.603516,  type: 2, fromlayer3  entity: 1
-B_input
-ssssssssssssssssssss
-Layer 5:
-ssssssssssssssssssss
-Corret 
           TOLAYER3: packet being corrupted
 
-EVENT time: 21432.652344,  type: 2, fromlayer3  entity: 0
-A_input
-Resent packet due to corrupted ACK
-
-EVENT time: 21438.097656,  type: 2, fromlayer3  entity: 1
+EVENT time: 16732.765625,  type: 2, fromlayer3  entity: 1
 B_input
-ssssssssssssssssssss
-Corret 
-
-EVENT time: 21445.074219,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 23096.937500,  type: 1, fromlayer5  entity: 0
-A_output
-ttttttttttttttttttttü
-EVENT time: 23098.853516,  type: 2, fromlayer3  entity: 1
-B_input
-tttttttttttttttttttt
-Layer 5:
-tttttttttttttttttttt
-Corret 
-
-EVENT time: 23101.894531,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 24176.855469,  type: 1, fromlayer5  entity: 0
-A_output
-uuuuuuuuuuuuuuuuuuuuü
-EVENT time: 24178.898438,  type: 2, fromlayer3  entity: 1
-B_input
-uuuuuuuuuuuuuuuuuuuu
-Layer 5:
-uuuuuuuuuuuuuuuuuuuu
-Corret 
-
-EVENT time: 24181.576172,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 26142.972656,  type: 1, fromlayer5  entity: 0
-A_output
-vvvvvvvvvvvvvvvvvvvvü          TOLAYER3: packet being corrupted
-
-EVENT time: 26151.767578,  type: 2, fromlayer3  entity: 1
-B_input
-vvvvvvvvvvvvvvvvvvvv
+Zppppppppppppppppppp
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
 Corrupted 
+          TOLAYER3: packet being corrupted
 
-EVENT time: 26161.144531,  type: 2, fromlayer3  entity: 0
+EVENT time: 16734.761719,  type: 2, fromlayer3  entity: 0
 A_input
-Recieve NACK. Resend the packet.
-
-EVENT time: 26165.984375,  type: 2, fromlayer3  entity: 1
-B_input
-vvvvvvvvvvvvvvvvvvvv
-Layer 5:
-vvvvvvvvvvvvvvvvvvvv
-Corret 
+Resent packet due to corrupted ACK
           TOLAYER3: packet being lost
 
-EVENT time: 26261.144531,  type: 0, timerinterrupt   entity: 0
+EVENT time: 16764.761719,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
 
-EVENT time: 26265.505859,  type: 2, fromlayer3  entity: 1
+EVENT time: 16773.798828,  type: 2, fromlayer3  entity: 1
 B_input
-vvvvvvvvvvvvvvvvvvvv
-Corret 
+pppppppppppppppppppp
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
+          TOLAYER3: packet being corrupted
 
-EVENT time: 26270.246094,  type: 2, fromlayer3  entity: 0
+EVENT time: 16779.015625,  type: 2, fromlayer3  entity: 0
+A_input
+Resent packet due to corrupted ACK
+
+EVENT time: 16785.654297,  type: 2, fromlayer3  entity: 1
+B_input
+pppppppppppppppppppp
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
+
+EVENT time: 16793.687500,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
-EVENT time: 27522.783203,  type: 1, fromlayer5  entity: 0
+EVENT time: 18336.921875,  type: 1, fromlayer5  entity: 0
 A_output
-wwwwwwwwwwwwwwwwwwwwü          TOLAYER3: packet being corrupted
+qqqqqqqqqqqqqqqqqqqqþ
+EVENT time: 18344.869141,  type: 2, fromlayer3  entity: 1
+B_input
+qqqqqqqqqqqqqqqqqqqq
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
+Layer 5:
+qqqqqqqqqqqqqqqqqqqq
+Corret 
 
-EVENT time: 27532.191406,  type: 2, fromlayer3  entity: 1
+EVENT time: 18354.115234,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 19594.347656,  type: 1, fromlayer5  entity: 0
+A_output
+rrrrrrrrrrrrrrrrrrrrþ
+EVENT time: 19602.806641,  type: 2, fromlayer3  entity: 1
+B_input
+rrrrrrrrrrrrrrrrrrrr
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
+Layer 5:
+rrrrrrrrrrrrrrrrrrrr
+Corret 
+
+EVENT time: 19610.433594,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 20064.662109,  type: 1, fromlayer5  entity: 0
+A_output
+ssssssssssssssssssssþ
+EVENT time: 20069.789062,  type: 2, fromlayer3  entity: 1
+B_input
+ssssssssssssssssssss
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
+Layer 5:
+ssssssssssssssssssss
+Corret 
+
+EVENT time: 20074.734375,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 21919.707031,  type: 1, fromlayer5  entity: 0
+A_output
+ttttttttttttttttttttþ
+EVENT time: 21927.472656,  type: 2, fromlayer3  entity: 1
+B_input
+tttttttttttttttttttt
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
+Layer 5:
+tttttttttttttttttttt
+Corret 
+
+EVENT time: 21935.794922,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 22309.482422,  type: 1, fromlayer5  entity: 0
+A_output
+uuuuuuuuuuuuuuuuuuuuþ          TOLAYER3: packet being corrupted
+
+EVENT time: 22313.167969,  type: 2, fromlayer3  entity: 1
+B_input
+uuuuuuuuuuuuuuuuuuuu
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 999999
+Corrupted 
+
+EVENT time: 22316.208984,  type: 2, fromlayer3  entity: 0
+A_input
+Recieve NACK. Resend the packet.
+          TOLAYER3: packet being corrupted
+
+EVENT time: 22319.498047,  type: 2, fromlayer3  entity: 1
+B_input
+Zuuuuuuuuuuuuuuuuuuu
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
+Corrupted 
+
+EVENT time: 22322.175781,  type: 2, fromlayer3  entity: 0
+A_input
+Recieve NACK. Resend the packet.
+
+EVENT time: 22328.468750,  type: 2, fromlayer3  entity: 1
+B_input
+uuuuuuuuuuuuuuuuuuuu
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
+Layer 5:
+uuuuuuuuuuuuuuuuuuuu
+Corret 
+
+EVENT time: 22336.472656,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 22963.740234,  type: 1, fromlayer5  entity: 0
+A_output
+vvvvvvvvvvvvvvvvvvvvþ
+EVENT time: 22966.363281,  type: 2, fromlayer3  entity: 1
+B_input
+vvvvvvvvvvvvvvvvvvvv
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
+Layer 5:
+vvvvvvvvvvvvvvvvvvvv
+Corret 
+
+EVENT time: 22967.708984,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 24825.332031,  type: 1, fromlayer5  entity: 0
+A_output
+wwwwwwwwwwwwwwwwwwwwþ
+EVENT time: 24830.947266,  type: 2, fromlayer3  entity: 1
+B_input
+wwwwwwwwwwwwwwwwwwww
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
+Layer 5:
+wwwwwwwwwwwwwwwwwwww
+Corret 
+          TOLAYER3: packet being corrupted
+
+EVENT time: 24840.878906,  type: 2, fromlayer3  entity: 0
+A_input
+Resent packet due to corrupted ACK
+          TOLAYER3: packet being corrupted
+
+EVENT time: 24842.443359,  type: 2, fromlayer3  entity: 1
 B_input
 Zwwwwwwwwwwwwwwwwwww
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
 Corrupted 
 
-EVENT time: 27534.615234,  type: 2, fromlayer3  entity: 0
+EVENT time: 24844.333984,  type: 2, fromlayer3  entity: 0
 A_input
 Recieve NACK. Resend the packet.
+
+EVENT time: 24849.896484,  type: 2, fromlayer3  entity: 1
+B_input
+wwwwwwwwwwwwwwwwwwww
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
+Sequence Number Not Matched. Resend ACK 
+
+EVENT time: 24857.201172,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 25572.261719,  type: 1, fromlayer5  entity: 0
+A_output
+xxxxxxxxxxxxxxxxxxxxþ
+EVENT time: 25578.744141,  type: 2, fromlayer3  entity: 1
+B_input
+xxxxxxxxxxxxxxxxxxxx
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
+Layer 5:
+xxxxxxxxxxxxxxxxxxxx
+Corret 
           TOLAYER3: packet being lost
 
-EVENT time: 27634.615234,  type: 0, timerinterrupt   entity: 0
+EVENT time: 25602.261719,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
 
-EVENT time: 27638.312500,  type: 2, fromlayer3  entity: 1
+EVENT time: 25604.835938,  type: 2, fromlayer3  entity: 1
 B_input
-wwwwwwwwwwwwwwwwwwww
-Layer 5:
-wwwwwwwwwwwwwwwwwwww
-Corret 
+xxxxxxxxxxxxxxxxxxxx
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
+          TOLAYER3: packet being corrupted
 
-EVENT time: 27641.791016,  type: 2, fromlayer3  entity: 0
+EVENT time: 25606.605469,  type: 2, fromlayer3  entity: 0
+A_input
+Resent packet due to corrupted ACK
+
+EVENT time: 25613.570312,  type: 2, fromlayer3  entity: 1
+B_input
+xxxxxxxxxxxxxxxxxxxx
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
+          TOLAYER3: packet being lost
+
+EVENT time: 25636.605469,  type: 0, timerinterrupt   entity: 0
+A_timerinterrupt
+Send Reserved Packet
+
+EVENT time: 25639.767578,  type: 2, fromlayer3  entity: 1
+B_input
+xxxxxxxxxxxxxxxxxxxx
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 1
+Sequence Number Not Matched. Resend ACK 
+
+EVENT time: 25647.636719,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
-EVENT time: 29507.458984,  type: 1, fromlayer5  entity: 0
+EVENT time: 27396.576172,  type: 1, fromlayer5  entity: 0
 A_output
-xxxxxxxxxxxxxxxxxxxxü
-EVENT time: 29514.134766,  type: 2, fromlayer3  entity: 1
+yyyyyyyyyyyyyyyyyyyyþ
+EVENT time: 27401.234375,  type: 2, fromlayer3  entity: 1
 B_input
-xxxxxxxxxxxxxxxxxxxx
+yyyyyyyyyyyyyyyyyyyy
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
-xxxxxxxxxxxxxxxxxxxx
+yyyyyyyyyyyyyyyyyyyy
 Corret 
+          TOLAYER3: packet being corrupted
 
-EVENT time: 29515.332031,  type: 2, fromlayer3  entity: 0
+EVENT time: 27409.421875,  type: 2, fromlayer3  entity: 0
 A_input
-Receive ACK
+Resent packet due to corrupted ACK
 
-EVENT time: 30950.253906,  type: 1, fromlayer5  entity: 0
-A_output
-yyyyyyyyyyyyyyyyyyyyü          TOLAYER3: packet being corrupted
+EVENT time: 27417.308594,  type: 2, fromlayer3  entity: 1
+B_input
+yyyyyyyyyyyyyyyyyyyy
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
+Sequence Number Not Matched. Resend ACK 
+          TOLAYER3: packet being corrupted
 
-EVENT time: 30954.611328,  type: 2, fromlayer3  entity: 1
+EVENT time: 27422.869141,  type: 2, fromlayer3  entity: 0
+A_input
+Resent packet due to corrupted ACK
+          TOLAYER3: packet being corrupted
+
+EVENT time: 27424.183594,  type: 2, fromlayer3  entity: 1
 B_input
 Zyyyyyyyyyyyyyyyyyyy
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
 Corrupted 
 
-EVENT time: 30964.542969,  type: 2, fromlayer3  entity: 0
+EVENT time: 27433.156250,  type: 2, fromlayer3  entity: 0
 A_input
 Recieve NACK. Resend the packet.
 
-EVENT time: 30965.550781,  type: 2, fromlayer3  entity: 1
+EVENT time: 27442.470703,  type: 2, fromlayer3  entity: 1
 B_input
 yyyyyyyyyyyyyyyyyyyy
-Layer 5:
-yyyyyyyyyyyyyyyyyyyy
-Corret 
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 0
+Sequence Number Not Matched. Resend ACK 
 
-EVENT time: 30973.820312,  type: 2, fromlayer3  entity: 0
+EVENT time: 27444.972656,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
-EVENT time: 31300.117188,  type: 1, fromlayer5  entity: 0
+EVENT time: 28476.906250,  type: 1, fromlayer5  entity: 0
 A_output
-zzzzzzzzzzzzzzzzzzzzü
-EVENT time: 31305.978516,  type: 2, fromlayer3  entity: 1
+zzzzzzzzzzzzzzzzzzzzþ
+EVENT time: 28482.509766,  type: 2, fromlayer3  entity: 1
 B_input
 zzzzzzzzzzzzzzzzzzzz
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
 Layer 5:
 zzzzzzzzzzzzzzzzzzzz
 Corret 
-          TOLAYER3: packet being corrupted
 
-EVENT time: 31315.562500,  type: 2, fromlayer3  entity: 0
+EVENT time: 28489.533203,  type: 2, fromlayer3  entity: 0
 A_input
-Resent packet due to corrupted ACK
-          TOLAYER3: packet being lost
+Receive ACK
 
-EVENT time: 31415.562500,  type: 0, timerinterrupt   entity: 0
+EVENT time: 29772.947266,  type: 1, fromlayer5  entity: 0
+A_output
+aaaaaaaaaaaaaaaaaaaaþ
+EVENT time: 29776.767578,  type: 2, fromlayer3  entity: 1
+B_input
+aaaaaaaaaaaaaaaaaaaa
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
+Layer 5:
+aaaaaaaaaaaaaaaaaaaa
+Corret 
+
+EVENT time: 29786.652344,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 31656.322266,  type: 1, fromlayer5  entity: 0
+A_output
+bbbbbbbbbbbbbbbbbbbbþ
+EVENT time: 31658.634766,  type: 2, fromlayer3  entity: 1
+B_input
+bbbbbbbbbbbbbbbbbbbb
+EXPECTED_SEQ_NUM: 1
+Received Packet Seq: 1
+Layer 5:
+bbbbbbbbbbbbbbbbbbbb
+Corret 
+
+EVENT time: 31660.068359,  type: 2, fromlayer3  entity: 0
+A_input
+Receive ACK
+
+EVENT time: 32827.894531,  type: 1, fromlayer5  entity: 0
+A_output
+ccccccccccccccccccccþ          TOLAYER3: packet being lost
+
+EVENT time: 32857.894531,  type: 0, timerinterrupt   entity: 0
 A_timerinterrupt
 Send Reserved Packet
 
-EVENT time: 31423.041016,  type: 2, fromlayer3  entity: 1
-B_input
-zzzzzzzzzzzzzzzzzzzz
-Corret 
-
-EVENT time: 31430.470703,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 32826.507812,  type: 1, fromlayer5  entity: 0
-A_output
-aaaaaaaaaaaaaaaaaaaaü          TOLAYER3: packet being corrupted
-
-EVENT time: 32835.890625,  type: 2, fromlayer3  entity: 1
-B_input
-Zaaaaaaaaaaaaaaaaaaa
-Corrupted 
-
-EVENT time: 32843.222656,  type: 2, fromlayer3  entity: 0
-A_input
-Recieve NACK. Resend the packet.
-
-EVENT time: 32851.710938,  type: 2, fromlayer3  entity: 1
-B_input
-aaaaaaaaaaaaaaaaaaaa
-Layer 5:
-aaaaaaaaaaaaaaaaaaaa
-Corret 
-          TOLAYER3: packet being corrupted
-
-EVENT time: 32855.679688,  type: 2, fromlayer3  entity: 0
-A_input
-Resent packet due to corrupted ACK
-
-EVENT time: 32864.265625,  type: 2, fromlayer3  entity: 1
-B_input
-aaaaaaaaaaaaaaaaaaaa
-Corret 
-
-EVENT time: 32873.425781,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 32886.480469,  type: 1, fromlayer5  entity: 0
-A_output
-bbbbbbbbbbbbbbbbbbbbü
-EVENT time: 32888.746094,  type: 2, fromlayer3  entity: 1
-B_input
-bbbbbbbbbbbbbbbbbbbb
-Layer 5:
-bbbbbbbbbbbbbbbbbbbb
-Corret 
-
-EVENT time: 32895.031250,  type: 2, fromlayer3  entity: 0
-A_input
-Receive ACK
-
-EVENT time: 34156.652344,  type: 1, fromlayer5  entity: 0
-A_output
-ccccccccccccccccccccü          TOLAYER3: packet being corrupted
-
-EVENT time: 34162.902344,  type: 2, fromlayer3  entity: 1
+EVENT time: 32860.648438,  type: 2, fromlayer3  entity: 1
 B_input
 cccccccccccccccccccc
-Corrupted 
-
-EVENT time: 34164.335938,  type: 2, fromlayer3  entity: 0
-A_input
-Recieve NACK. Resend the packet.
-
-EVENT time: 34165.960938,  type: 2, fromlayer3  entity: 1
-B_input
-cccccccccccccccccccc
+EXPECTED_SEQ_NUM: 0
+Received Packet Seq: 0
 Layer 5:
 cccccccccccccccccccc
 Corret 
 
-EVENT time: 34171.593750,  type: 2, fromlayer3  entity: 0
+EVENT time: 32865.746094,  type: 2, fromlayer3  entity: 0
 A_input
 Receive ACK
 
-EVENT time: 35855.386719,  type: 1, fromlayer5  entity: 0
+EVENT time: 33650.375000,  type: 1, fromlayer5  entity: 0
 A_output
-ddddddddddddddddddddü
-EVENT time: 35859.316406,  type: 2, fromlayer3  entity: 1
+ddddddddddddddddddddþ
+EVENT time: 33659.273438,  type: 2, fromlayer3  entity: 1
 All Done with Simulation
