@@ -108,25 +108,17 @@ int B_input(struct pkt packet)
 	// Send ACK or NACK
 	printf("EXPECTED_SEQ_NUM: %d\n", EXPECTED_SEQ_NUM);
 	printf("Received Packet Seq: %d\n", packet.seqnum);
-	if(checkSum == packet.checksum){
+	if(checkSum == packet.checksum && packet.seqnum == EXPECTED_SEQ_NUM){
 		// Send ACK
 		packetToA.acknum = packet.seqnum;
-		
 		// send message to layer 5
-		if(packet.seqnum == EXPECTED_SEQ_NUM){
-			tolayer5(B, packet.payload);
-			EXPECTED_SEQ_NUM = (EXPECTED_SEQ_NUM + 1) % 2;
-			printf("Corret \n");
-		}else
-		{
-			// Resend ACK
-			printf("Sequence Number Not Matched. Resend ACK \n");
-		}
-		
+		tolayer5(B, packet.payload);
+		EXPECTED_SEQ_NUM = (EXPECTED_SEQ_NUM + 1) % 2;
+		printf("Corret \n");
 	}else{
 		// Send NACK
-		packetToA.acknum = ((CUR_SEQ_NUM + 1) % 2);
-		printf("Corrupted \n");
+		packetToA.acknum = ((EXPECTED_SEQ_NUM + 1) % 2);
+		printf("Corrupted or Sequence Number Not Matched \n");
 	}
 	// Send message to A using layer 3
 	checkSum = calcuateCheckSum(packetToA);
