@@ -2,6 +2,7 @@
 #include "helper.h"
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
+int PRINT_DEBUG = 0;
 int CUR_SEQ_NUM;
 int EXPECTED_SEQ_NUM;
 int CAN_SEND;
@@ -13,14 +14,20 @@ int A_output(struct msg message)
 {
 	/* There is some message currently transit
 	   We cannot send packet now.*/
-	printf("A_output\n");
 	if(CAN_SEND == 0)
 	{
-		printf("still have other packets transiting.\n");
+		if(PRINT_DEBUG)
+		{
+			printf("still have other packets transiting.\n");
+		}
 		return 0;
 	}
 	(void)message;
-	printf("%s", message.data);
+	if(PRINT_DEBUG)
+	{
+		printf("A_output\n");
+		printf("%s", message.data);
+	}
 	struct pkt packet;
 	int index = 0;
 	while(message.data[index] != 0 && index < 20)
@@ -42,14 +49,20 @@ int A_output(struct msg message)
 /* called from layer 3, when a packet arrives for layer 4 */
 int A_input(struct pkt packet)
 {
-	printf("A_input\n");
+	if(PRINT_DEBUG)
+	{
+		printf("A_input\n");
+	}
 	(void)packet;
 	// check whether the ACK is corrupted
 	int checkSum = calcuateCheckSum(packet);
 	if(checkSum != packet.checksum)
 	{
 		// resend the packet
-		printf("Resent packet due to corrupted ACK\n");
+		if(PRINT_DEBUG)
+		{
+			printf("Resent packet due to corrupted ACK\n");
+		}
 		stoptimer(A);
 		starttimer(A, TIME_TO_INTERRUPT);
 		tolayer3(A, RESERVED_PACKET);
@@ -60,14 +73,20 @@ int A_input(struct pkt packet)
 	if(packet.acknum == CUR_SEQ_NUM)
 	{
 		// Do not have to resent, just add CUR_SEQ_NUM
-		printf("Receive ACK\n");
+		if(PRINT_DEBUG)
+		{
+			printf("Receive ACK\n");
+		}
 		CUR_SEQ_NUM = ((CUR_SEQ_NUM + 1) % 2);
 		CAN_SEND = 1;
 		stoptimer(A);
 	}else
 	{
 		// This is a NACK, we have to resend the packet
-		printf("Recieve NACK. Resend the packet.\n");
+		if(PRINT_DEBUG)
+		{
+			printf("Recieve NACK. Resend the packet.\n");
+		}
 		stoptimer(A);
 		starttimer(A, TIME_TO_INTERRUPT);
 		tolayer3(A, RESERVED_PACKET);
@@ -77,9 +96,11 @@ int A_input(struct pkt packet)
 
 /* called when A's timer goes off */
 int A_timerinterrupt() {
-	printf("A_timerinterrupt\n");
-	// Resend packet
-	printf("Send Reserved Packet\n");
+	if (PRINT_DEBUG)
+	{
+		printf("A_timerinterrupt\n");
+		printf("Send Reserved Packet\n");
+	}	
 	starttimer(A, TIME_TO_INTERRUPT);
 	tolayer3(A, RESERVED_PACKET);
 	return 0;
@@ -88,7 +109,10 @@ int A_timerinterrupt() {
 /* the following routine will be called once (only) before any other */
 /* entity A routines are called. You can use it to do any initialization */
 int A_init() {
-	printf("A init!\n");
+	if(PRINT_DEBUG)
+	{
+		printf("A init!\n");
+	}
 	CUR_SEQ_NUM = 0;
 	CAN_SEND = 1;
 	return 0;
@@ -99,26 +123,35 @@ int A_init() {
 /* called from layer 3, when a packet arrives for layer 4 at B*/
 int B_input(struct pkt packet)
 {
-	printf("B_input\n");
 	(void)packet;
 	struct pkt packetToA;
-	printf("%s\n", packet.payload);
 	// Check whether the message is corrupted
 	int checkSum = calcuateCheckSum(packet);
 	// Send ACK or NACK
-	printf("EXPECTED_SEQ_NUM: %d\n", EXPECTED_SEQ_NUM);
-	printf("Received Packet Seq: %d\n", packet.seqnum);
+	if(PRINT_DEBUG)
+	{
+		printf("B_input\n");
+		printf("%s\n", packet.payload);
+		printf("EXPECTED_SEQ_NUM: %d\n", EXPECTED_SEQ_NUM);
+		printf("Received Packet Seq: %d\n", packet.seqnum);
+	}	
 	if(checkSum == packet.checksum && packet.seqnum == EXPECTED_SEQ_NUM){
 		// Send ACK
 		packetToA.acknum = packet.seqnum;
 		// send message to layer 5
 		tolayer5(B, packet.payload);
 		EXPECTED_SEQ_NUM = (EXPECTED_SEQ_NUM + 1) % 2;
-		printf("Corret \n");
+		if(PRINT_DEBUG)
+		{
+			printf("Corret \n");
+		}
 	}else{
 		// Send NACK
 		packetToA.acknum = ((EXPECTED_SEQ_NUM + 1) % 2);
-		printf("Corrupted or Sequence Number Not Matched \n");
+		if(PRINT_DEBUG)
+		{
+			printf("Corrupted or Sequence Number Not Matched \n");
+		}
 	}
 	// Send message to A using layer 3
 	checkSum = calcuateCheckSum(packetToA);
@@ -136,7 +169,10 @@ int B_timerinterrupt() {
 /* the following routine will be called once (only) before any other */
 /* entity B routines are called. You can use it to do any initialization */
 int B_init() {
-	printf("B_init\n");
+	if(PRINT_DEBUG)
+	{
+		printf("B_init\n");
+	}
 	EXPECTED_SEQ_NUM = 0;
 	return 0;
 }
@@ -264,7 +300,7 @@ void init() /* initialize the simulator */
   lossprob = 0.1;
   corruptprob = 0.3;
   lambda = 1000;
-  TRACE = 2;
+  TRACE = 3;
   
   srand(rand_seed); /* init random number generator */
   sum = 0.0;   /* test random number generator for students */
@@ -514,7 +550,10 @@ void tolayer5(int AorB, const char * datasent)
 {
   (void)AorB;
   int i;
-  printf("Layer 5:\n%s\n", datasent);
+  if(PRINT_DEBUG)
+  {
+	  printf("Layer 5:\n%s\n", datasent);
+  }
   if (TRACE > 2) {
     printf("          TOLAYER5: data received: ");
     for (i = 0; i < 20; i++) {

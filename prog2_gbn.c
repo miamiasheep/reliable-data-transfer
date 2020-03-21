@@ -38,7 +38,7 @@ int A_output(struct msg message)
 	
 	while(NEXT_SEQ_NUM < BUFFER_INDEX)
 	{
-		// nextseqnum < base + n (Suppose window_size equals to buffer_size)
+		// nextseqnum < base + n 
 		if (NEXT_SEQ_NUM >= BASE_INDEX + WINDOW_SIZE)
 		{
 			printf("BASE_INDEX: %d\n", BASE_INDEX);
@@ -103,7 +103,7 @@ int A_timerinterrupt() {
 	
 	for(int i = BASE_INDEX; i < BASE_INDEX + WINDOW_SIZE; i++)
 	{
-		if(i <= NEXT_SEQ_NUM)
+		if(i < NEXT_SEQ_NUM)
 		{
 			printf("%s\n", RESERVED_PACKET[i % BUFFER_SIZE].payload);
 			tolayer3(A, RESERVED_PACKET[i % BUFFER_SIZE]);
@@ -138,18 +138,17 @@ int B_input(struct pkt packet)
 		packetToA.acknum = packet.seqnum;
 		EXPECTED_SEQ_NUM ++;
 		printf("Corret \n");
+		// send message to layer 5
+		tolayer5(B, packet.payload);
 	}else{
 		printf("Corrupted or don't match expected number \n");
-		return 0;
+		packetToA.acknum = EXPECTED_SEQ_NUM - 1;
 	}
 	printf("Expected Number: %d\n", EXPECTED_SEQ_NUM);
 	// Send message to A using layer 3
 	checkSum = calcuateCheckSum(packetToA);
 	packetToA.checksum = checkSum;
 	tolayer3(B, packetToA);
-	
-	// send message to layer 5
-	tolayer5(B, packet.payload);
 	return 0;
 }
 
@@ -287,8 +286,8 @@ void init() /* initialize the simulator */
   ***/
   // configuration
   nsimmax = 50;
-  lossprob = 0.1;
-  corruptprob = 0.3;
+  lossprob = 0.2;
+  corruptprob = 0.2;
   lambda = 10;
   TRACE = 2;
   
@@ -514,7 +513,6 @@ void tolayer3(int AorB, struct pkt packet)
     }
   }
   evptr->evtime = lastime + 1 + 9 * jimsrand();
-
   /* simulate corruption: */
   if (jimsrand() < corruptprob) {
     ncorrupt++;
@@ -529,7 +527,6 @@ void tolayer3(int AorB, struct pkt packet)
       printf("          TOLAYER3: packet being corrupted\n");
     }
   }
-
   if (TRACE > 2) {
     printf("          TOLAYER3: scheduling arrival on other side\n");
   }

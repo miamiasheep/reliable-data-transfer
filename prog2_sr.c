@@ -54,7 +54,6 @@ int A_output(struct msg message)
 		// Set Timer
 		// Send to B using layer 3
 		starttimer(NEXT_SEQ_NUM, TIME_TO_INTERRUPT);
-		
 		tolayer3(A, RESERVED_PACKET[NEXT_SEQ_NUM]);
 		NEXT_SEQ_NUM = (NEXT_SEQ_NUM + 1) % BUFFER_SIZE;
 	}
@@ -119,7 +118,8 @@ int A_timerinterrupt(int seq) {
 
 /* the following routine will be called once (only) before any other */
 /* entity A routines are called. You can use it to do any initialization */
-int A_init() {
+int A_init() 
+{
 	printf("A init!\n");
 	NEXT_SEQ_NUM = 0;
 	BASE_INDEX = 0;
