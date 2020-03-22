@@ -24,7 +24,7 @@ int A_output(struct msg message)
 	
 	// make the packet
 	(void)message;
-	printf("%s\n", message.data);
+	printf("put %s\n into buffer \n", message.data);
 	struct pkt packet;
 	int index = 0;
 	
@@ -54,6 +54,7 @@ int A_output(struct msg message)
 		// Set Timer
 		// Send to B using layer 3
 		starttimer(NEXT_SEQ_NUM, TIME_TO_INTERRUPT);
+		printf("send packet: %s\n", RESERVED_PACKET[NEXT_SEQ_NUM].payload);
 		tolayer3(A, RESERVED_PACKET[NEXT_SEQ_NUM]);
 		NEXT_SEQ_NUM = (NEXT_SEQ_NUM + 1) % BUFFER_SIZE;
 	}
@@ -98,6 +99,21 @@ int A_input(struct pkt packet)
 	if(BASE_INDEX == packet.acknum)
 	{	
 		BASE_INDEX = (packet.acknum + 1) % BUFFER_SIZE;
+	}
+	
+	while(NEXT_SEQ_NUM < BUFFER_INDEX)
+	{
+		// nextseqnum < base + n (Suppose window_size equals to buffer_size)
+		if (NEXT_SEQ_NUM >= BASE_INDEX + WINDOW_SIZE)
+		{
+			break;
+		}
+		// Set Timer
+		// Send to B using layer 3
+		starttimer(NEXT_SEQ_NUM, TIME_TO_INTERRUPT);
+		printf("send packet: %s\n", RESERVED_PACKET[NEXT_SEQ_NUM].payload);
+		tolayer3(A, RESERVED_PACKET[NEXT_SEQ_NUM]);
+		NEXT_SEQ_NUM = (NEXT_SEQ_NUM + 1) % BUFFER_SIZE;
 	}
 	return 0;
 }

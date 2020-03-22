@@ -2,7 +2,7 @@
 #include "helper.h"
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
-int PRINT_DEBUG = 0;
+int PRINT_DEBUG = 1;
 int CUR_SEQ_NUM;
 int EXPECTED_SEQ_NUM;
 int CAN_SEND;
@@ -300,7 +300,7 @@ void init() /* initialize the simulator */
   lossprob = 0.1;
   corruptprob = 0.3;
   lambda = 1000;
-  TRACE = 3;
+  TRACE = 2;
   
   srand(rand_seed); /* init random number generator */
   sum = 0.0;   /* test random number generator for students */
