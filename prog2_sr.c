@@ -311,8 +311,8 @@ void init() /* initialize the simulator */
   ***/
   // configuration
   nsimmax = 50;
-  lossprob = 0.1;
-  corruptprob = 0.3;
+  lossprob = 0.2;
+  corruptprob = 0.2;
   lambda = 10;
   TRACE = 2;
   

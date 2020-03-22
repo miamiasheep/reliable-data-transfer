@@ -332,7 +332,6 @@ void init() /* initialize the simulator */
   ntolayer3 = 0;
   nlost = 0;
   ncorrupt = 0;
-
   time = 0.0;              /* initialize time to 0.0 */
   generate_next_arrival(); /* initialize event list */
 }
