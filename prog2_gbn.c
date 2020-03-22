@@ -73,15 +73,40 @@ int A_input(struct pkt packet)
 		return 0;
 	}
 	printf("Receive ACK %d \n", packet.acknum);
-	BASE_INDEX = (packet.acknum + 1) % BUFFER_SIZE;
-	if(BASE_INDEX == NEXT_SEQ_NUM)
+	if(BASE_INDEX != ((packet.acknum + 1) % BUFFER_SIZE))
 	{
-		stoptimer(A);
-	}else
-	{
-		stoptimer(A);
-		starttimer(A, TIME_TO_INTERRUPT);
+		BASE_INDEX = (packet.acknum + 1) % BUFFER_SIZE;
+		if(BASE_INDEX == NEXT_SEQ_NUM)
+		{
+			stoptimer(A);
+		}else
+		{
+			stoptimer(A);
+			starttimer(A, TIME_TO_INTERRUPT);
+		}
+		
+		while(NEXT_SEQ_NUM < BUFFER_INDEX)
+		{
+			// nextseqnum < base + n 
+			if (NEXT_SEQ_NUM >= BASE_INDEX + WINDOW_SIZE)
+			{
+				printf("BASE_INDEX: %d\n", BASE_INDEX);
+				printf("NEXT_SEQ_NUM: %d\n", NEXT_SEQ_NUM);
+				printf("cannot send the data because there are more than %d packets transmitting\n", WINDOW_SIZE);
+				return 0;
+			}
+			
+			// Set Timer
+			// Send to B using layer 3
+			if(BASE_INDEX == NEXT_SEQ_NUM)
+			{
+				starttimer(A, TIME_TO_INTERRUPT);
+			}
+			tolayer3(A, RESERVED_PACKET[NEXT_SEQ_NUM]);
+			NEXT_SEQ_NUM = (NEXT_SEQ_NUM + 1) % BUFFER_SIZE;
+		}
 	}
+	
 	return 0;
 }
 
