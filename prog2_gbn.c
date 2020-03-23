@@ -296,7 +296,7 @@ void init() /* initialize the simulator */
 {
   int i;
   float sum, avg;
-  /***
+  
   printf("-----  Stop and Wait Network Simulator Version 1.1 -------- \n\n");
   printf("Enter the number of messages to simulate: ");
   scanf("%d", &nsimmax);
@@ -308,14 +308,15 @@ void init() /* initialize the simulator */
   scanf("%f", &lambda);
   printf("Enter TRACE:");
   scanf("%d", &TRACE);
-  ***/
+  
   // configuration
+  /***
   nsimmax = 50;
   lossprob = 0.2;
   corruptprob = 0.2;
   lambda = 10;
   TRACE = 2;
-  
+  ***/
   srand(rand_seed); /* init random number generator */
   sum = 0.0;   /* test random number generator for students */
   for (i = 0; i < 1000; i++) {
