@@ -17,6 +17,13 @@ int isReceived[BUFFER_SIZE];
 // B side 
 int EXPECTED_SEQ_NUM;
 
+/* Global Variable to Designate Timer
+   Because we cannot modify prog2.h, I use a global variable to replace
+   the input parameter of starttimer and A_timerinterrupt
+*/
+int TIMER_SEQ; 
+
+
 /* called from layer 5, passed the data to be sent to other side */
 int A_output(struct msg message)
 {
@@ -82,7 +89,8 @@ int A_input(struct pkt packet)
 	int index = packet.acknum;
 	
 	// Set timer
-	stoptimer(packet.acknum);
+	TIMER_SEQ = packet.acknum;
+	stoptimer();
 	
 	// Move the BASE_INDEX to next non acked position
 	if(index == BASE_INDEX)
@@ -119,15 +127,15 @@ int A_input(struct pkt packet)
 }
 
 /* called when A's timer goes off */
-int A_timerinterrupt(int seq) {
+int A_timerinterrupt() {
 	// Resend all the packets in the windows (Go Back N implementation)
 	// Need to change to Selective Repeated
-	printf("%d_timerinterrupt\n", seq);
-	starttimer(seq, TIME_TO_INTERRUPT);
-	if (!isAcked[seq])
+	printf("%d_timerinterrupt\n", TIMER_SEQ);
+	if (!isAcked[TIMER_SEQ])
 	{
-		printf("%s\n", RESERVED_PACKET[seq % BUFFER_SIZE].payload);
-		tolayer3(A, RESERVED_PACKET[seq % BUFFER_SIZE]);
+		printf("%s\n", RESERVED_PACKET[TIMER_SEQ % BUFFER_SIZE].payload);
+		starttimer(TIMER_SEQ, TIME_TO_INTERRUPT);
+		tolayer3(A, RESERVED_PACKET[TIMER_SEQ % BUFFER_SIZE]);
 	}
 	return 0;
 }
@@ -277,7 +285,8 @@ int main()
       }
       free(eventptr->pktptr); /* free the memory for packet */
     } else if (eventptr->evtype == TIMER_INTERRUPT) {
-      A_timerinterrupt(eventptr->eventity);
+	  TIMER_SEQ = eventptr->eventity;
+      A_timerinterrupt();
     } else {
       printf("INTERNAL PANIC: unknown event type \n");
     }
@@ -425,7 +434,7 @@ void printevlist()
 /********************** Student-callable ROUTINES ***********************/
 
 /* called by students routine to cancel a previously-started timer */
-void stoptimer(int seq)
+void stoptimer()
 {
   struct event * q;
 
@@ -434,7 +443,7 @@ void stoptimer(int seq)
   }
 
   for (q = evlist; q != NULL; q = q->next) {
-    if ((q->evtype == TIMER_INTERRUPT && q->eventity == seq)) {
+    if ((q->evtype == TIMER_INTERRUPT && q->eventity == TIMER_SEQ)) {
       /* remove this event */
       if (NULL == q->next && NULL == q->prev) {
         evlist = NULL;              /* remove first and only event on list */
