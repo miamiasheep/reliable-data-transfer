@@ -26,3 +26,9 @@ In the pdf file, I use red color to annotate the first packet that is successful
 I also list the history of the first three packets to show that how my protocol recover packet from corrupted or lost.
 
 Besides, I use blue pen to highlight first few recoveries. 
+
+# File I've Included
+
+1. I still include prog2.h, you can remove it if you want.
+
+2. I also include the origin log file `log_arq.txt`, `log_gbn.txt`, `log_sr.txt`. 
