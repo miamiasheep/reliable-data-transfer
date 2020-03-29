@@ -1,5 +1,4 @@
 #include "prog2.h"
-#include "helper.h"
 #define BUFFER_SIZE 10000
 
 /********* STUDENTS WRITE THE NEXT SEVEN ROUTINES *********/
@@ -13,6 +12,31 @@ struct pkt RESERVED_PACKET[BUFFER_SIZE];
 
 // B side variable
 int EXPECTED_SEQ_NUM;
+
+int calcuateCheckSum(struct pkt packet)
+{
+	char *input = packet.payload;
+    int checkSum = 0;
+    int index = 0;
+    while(input[index]!=0 && index < 20)
+    {
+		if(index == 0)
+        {
+            checkSum = input[index];
+            index += 1;
+            continue;
+        }
+        checkSum += input[index];
+        if(checkSum > 255)
+        {
+            checkSum = checkSum - 255 + 1;
+        }
+        // perform one's complement
+        checkSum = ~checkSum & 255;
+        index ++;
+    }
+    return checkSum + packet.acknum + packet.seqnum;
+}
 
 /* called from layer 5, passed the data to be sent to other side */
 int A_output(struct msg message)
