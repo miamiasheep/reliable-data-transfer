@@ -103,7 +103,7 @@ float jimsrand();
 void generate_next_arrival();
 void printevlist();
 void starttimer(int, float);
-void stoptimer();
+void stoptimer(int);
 void insertevent(struct event *);
 void tolayer3(int, struct pkt);
 void tolayer5(int, const char *);

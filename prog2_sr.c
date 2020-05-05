@@ -112,8 +112,7 @@ int A_input(struct pkt packet)
 	int index = packet.acknum;
 	
 	// Set timer
-	TIMER_SEQ = packet.acknum;
-	stoptimer();
+	stoptimer(packet.acknum);
 	
 	// Move the BASE_INDEX to next non acked position
 	if(index == BASE_INDEX)
@@ -457,7 +456,7 @@ void printevlist()
 /********************** Student-callable ROUTINES ***********************/
 
 /* called by students routine to cancel a previously-started timer */
-void stoptimer()
+void stoptimer(int seq)
 {
   struct event * q;
 
@@ -466,7 +465,7 @@ void stoptimer()
   }
 
   for (q = evlist; q != NULL; q = q->next) {
-    if ((q->evtype == TIMER_INTERRUPT && q->eventity == TIMER_SEQ)) {
+    if ((q->evtype == TIMER_INTERRUPT && q->eventity == seq)) {
       /* remove this event */
       if (NULL == q->next && NULL == q->prev) {
         evlist = NULL;              /* remove first and only event on list */
