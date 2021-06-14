@@ -1,6 +1,6 @@
-# cs536_lab2
+# Reliable Data Transfer
 
-Lab2 of CS536 in purdue university
+Simulator for reliable data transfer.
 
 # How to Compile 
 
